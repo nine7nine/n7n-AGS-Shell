@@ -63,7 +63,7 @@ const options = mkOptions(OPTIONS, {
     bar: {
         flatButtons: opt(true),
         position: opt<"top" | "bottom">("top"),
-        corners: opt(true),
+        corners: opt(false),
         layout: {
             start: opt<BarWidget[]>([
                 "launcher",
@@ -102,7 +102,7 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
-            bar: opt<"hidden" | "regular" | "whole">("regular"),
+            bar: opt<"hidden" | "regular" | "whole">("hidden"),
             charging: opt("#00D787"),
             percentage: opt(true),
             blocks: opt(7),
@@ -110,11 +110,11 @@ const options = mkOptions(OPTIONS, {
             low: opt(30),
         },
         workspaces: {
-            workspaces: opt(7),
+            workspaces: opt(0),
         },
         taskbar: {
             iconSize: opt(0),
-            monochrome: opt(true),
+            monochrome: opt(false),
             exclusive: opt(false),
         },
         messages: {
@@ -139,7 +139,7 @@ const options = mkOptions(OPTIONS, {
     },
 
     applauncher: {
-        iconSize: opt(62),
+        iconSize: opt(36),
         width: opt(0),
         margin: opt(27),
         maxItem: opt(6),
@@ -177,7 +177,7 @@ const options = mkOptions(OPTIONS, {
         },
         width: opt(380),
         position: opt<"left" | "center" | "right">("right"),
-        networkSettings: opt("gtk-launch gnome-control-center"),
+        networkSettings: opt("gtk-launch iwgtk"),
         media: {
             monochromeIcon: opt(true),
             coverSize: opt(100),
