@@ -13,7 +13,7 @@ export default (monitor: number) => Widget.Window({
     child: Widget.Box({
         expand: true,
         css: options.theme.dark.primary.bg.bind().as(c => `
-            transition: 500ms;
+            transition: 250ms;
             background-color: ${c}`),
         child: Widget.Box({
             class_name: "wallpaper",
@@ -28,7 +28,7 @@ export default (monitor: number) => Widget.Window({
                         background-image: url('${img}');
                         background-size: contain;
                         background-repeat: no-repeat;
-                        transition: 200ms;
+                        transition: 150ms;
                         min-width: 700px;
                         min-height: 700px;
                         border-radius: 30px;

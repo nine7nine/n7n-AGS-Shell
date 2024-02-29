@@ -22,7 +22,7 @@ const Settings = () => Widget.Box({
 const DateMenu = () => PopupWindow({
     name: "datemenu",
     exclusivity: "exclusive",
-    transition: pos.as(pos => pos === "top" ? "slide_down" : "slide_up"),
+    transition: "crossfade",
     layout: layout.value,
     child: Settings(),
 })

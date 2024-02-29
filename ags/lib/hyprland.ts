@@ -54,7 +54,7 @@ async function setupHyprland() {
         `general:border_size ${width.value}`,
         `general:gaps_out ${wm_gaps}`,
         `general:gaps_in ${Math.floor(wm_gaps / 2)}`,
-        `general:col.active_border rgba(${activeBorder()}ff)`,
+        `general:col.active_border rgba(33ccff99) rgba(7147DDaa) rgba(9848D688) rgba(7147DD99) rgba(33ccff88) 45deg`,
         `general:col.inactive_border rgba(${hyprland.inactiveBorder.value})`,
         `decoration:rounding ${radius.value}`,
         `decoration:drop_shadow ${shadows.value ? "yes" : "no"}`,

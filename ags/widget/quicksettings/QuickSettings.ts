@@ -70,7 +70,7 @@ const Settings = () => Widget.Box({
 const QuickSettings = () => PopupWindow({
     name: "quicksettings",
     exclusivity: "exclusive",
-    transition: bar.position.bind().as(pos => pos === "top" ? "slide_down" : "slide_up"),
+    transition: "crossfade",
     layout: layout.value,
     child: Settings(),
 })
