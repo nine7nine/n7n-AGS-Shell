@@ -28,17 +28,6 @@ export const AppItem = (app: Application) => {
         truncate: "end",
     })
 
-    const description = Widget.Label({
-        class_name: "description",
-        label: app.description || "",
-        hexpand: true,
-        wrap: true,
-        max_width_chars: 30,
-        xalign: 0,
-        justification: "left",
-        vpack: "center",
-    })
-
     const appicon = Widget.Icon({
         icon: icon(app.icon_name, icons.fallback.executable),
         size: iconSize.bind(),
@@ -47,7 +36,7 @@ export const AppItem = (app: Application) => {
     const textBox = Widget.Box({
         vertical: true,
         vpack: "center",
-        children: app.description ? [title, description] : [title],
+        children: [title],
     })
 
     return Widget.Button({

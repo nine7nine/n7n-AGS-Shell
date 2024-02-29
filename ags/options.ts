@@ -13,7 +13,7 @@ const options = mkOptions(OPTIONS, {
         dark: {
             primary: {
                 bg: opt("#51a4e7"),
-                fg: opt("#141414"),
+                fg: opt("#242424"),
             },
             error: {
                 bg: opt("#e55f86"),
@@ -39,18 +39,18 @@ const options = mkOptions(OPTIONS, {
             border: opt("#080808"),
         },
 
-        blur: opt(5),
+        blur: opt(3),
         scheme: opt<"dark" | "light">("dark"),
         widget: { opacity: opt(94) },
         border: {
             width: opt(2),
-            opacity: opt(96),
+            opacity: opt(94),
         },
 
-        shadows: opt(true),
-        padding: opt(7),
-        spacing: opt(12),
-        radius: opt(11),
+        shadows: opt(false),
+        padding: opt(5),
+        spacing: opt(5),
+        radius: opt(5),
     },
 
     transition: opt(80),
@@ -158,7 +158,7 @@ const options = mkOptions(OPTIONS, {
     overview: {
         scale: opt(6),
         workspaces: opt(0),
-        monochromeIcon: opt(true),
+        monochromeIcon: opt(false),
     },
 
     powermenu: {
@@ -167,7 +167,7 @@ const options = mkOptions(OPTIONS, {
         logout: opt("pkill Hyprland"),
         shutdown: opt("shutdown now"),
         layout: opt<"line" | "box">("line"),
-        labels: opt(true),
+        labels: opt(false),
     },
 
     quicksettings: {

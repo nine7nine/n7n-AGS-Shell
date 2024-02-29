@@ -8,6 +8,12 @@ const apps = await Service.import("applications")
 const { query } = apps
 const { width, margin, maxItem, favorites } = options.applauncher
 
+const fetchInstalledApps = () => {
+    const installedApps = apps.query('')
+    const sortedApps = installedApps.sort((a, b) => a.name.localeCompare(b.name))
+    return sortedApps.map(app => AppItem(app))
+}
+
 const SeparatedAppItem = (app: Parameters<typeof AppItem>[0]) => Widget.Revealer(
     { attribute: { app } },
     Widget.Box(
@@ -23,7 +29,12 @@ const Applauncher = () => {
 
     const list = Widget.Box({
         vertical: true,
-        children: applist.bind().as(list => list.map(SeparatedAppItem)),
+        hexpand: true,
+        vexpand: true,
+        children: applist.bind().as(list => [
+            ...list.map(SeparatedAppItem),
+            ...fetchInstalledApps(),
+        ])
     })
 
     list.hook(apps, () => applist.value = query(""), "notify::frequents")
@@ -78,8 +89,18 @@ const Applauncher = () => {
         quicklaunch.reveal_child = true
     }
 
+    const scrolledWindow = new imports.gi.Gtk.ScrolledWindow({
+        hscrollbar_policy: imports.gi.Gtk.PolicyType.NEVER,
+        vscrollbar_policy: imports.gi.Gtk.PolicyType.AUTOMATIC,
+    })
+
+    scrolledWindow.set_vexpand(true)
+    scrolledWindow.set_hexpand(true)
+
+    scrolledWindow.add(list)
+
     const layout = Widget.Box({
-        css: width.bind().as(v => `min-width: ${v}pt;`),
+        css: width.bind().as(v => `min-width: 300pt;`),
         class_name: "applauncher",
         vertical: true,
         vpack: "start",
@@ -93,8 +114,7 @@ const Applauncher = () => {
         }),
         children: [
             entry,
-            //quicklaunch,
-            list,
+            scrolledWindow,
         ],
     })
 

@@ -4,6 +4,7 @@
 window#applauncher .applauncher {
     @include floating_widget;
     border-radius: $radius;
+    min-height: 620pt;
 
     .quicklaunch {
         @include spacing;

@@ -39,30 +39,30 @@ const Settings = () => Widget.Box({
     css: quicksettings.width.bind().as(w => `min-width: ${w}px;`),
     children: [
         Header(),
+        Row(
+            [NetworkToggle, BluetoothToggle],
+            [WifiSelection, BluetoothDevices],
+        ),
+        /* Row(
+            [ProfileToggle, DarkModeToggle],
+            [ProfileSelector],
+        ), */
+        Row([MicMute, DND]),
+        Widget.Box({
+            visible: media.as(l => l.length > 0),
+            child: Media(),
+        }),
         Widget.Box({
             class_name: "sliders-box vertical",
             vertical: true,
             children: [
+                Brightness(),
                 Row(
                     [Volume],
                     [SinkSelector, AppMixer],
                 ),
                 Microhone(),
-                Brightness(),
             ],
-        }),
-        Row(
-            [NetworkToggle, BluetoothToggle],
-            [WifiSelection, BluetoothDevices],
-        ),
-        Row(
-            [ProfileToggle, DarkModeToggle],
-            [ProfileSelector],
-        ),
-        Row([MicMute, DND]),
-        Widget.Box({
-            visible: media.as(l => l.length > 0),
-            child: Media(),
         }),
     ],
 })
