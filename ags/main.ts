@@ -10,6 +10,7 @@ import NotificationPopups from "widget/notifications/NotificationPopups"
 import ScreenCorners from "widget/bar/ScreenCorners"
 import OSD from "widget/osd/OSD"
 import SettingsDialog from "widget/settings/SettingsDialog"
+import FloatingDock from "widget/dock/FloatingDock"
 import { config, forMonitors } from "lib/utils"
 import { setupQuickSettings } from "widget/quicksettings/QuickSettings"
 import { setupDateMenu } from "widget/datemenu/DateMenu"
@@ -32,6 +33,7 @@ export default config({
         ...forMonitors(NotificationPopups),
         ...forMonitors(ScreenCorners),
         ...forMonitors(OSD),
+        ...forMonitors(FloatingDock),
         Applauncher(),
         Overview(),
         PowerMenu(),

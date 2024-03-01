@@ -3,7 +3,7 @@
 $bar-spacing: $spacing * .75;
 $button-radius: $radius;
 
-@mixin panel-button($flat: true, $reactive: true) {
+@mixin panel-button($flat: true, $reactive: false) {
     @include accs-button($flat, $reactive);
 
     >* {

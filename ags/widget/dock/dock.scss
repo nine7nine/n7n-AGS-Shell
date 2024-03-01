@@ -1,0 +1,31 @@
+@use "sass:color";
+
+.dock {
+    @include floating-widget;
+    border-radius: $radius;
+    min-width: 0;
+    padding: 6;
+
+    // Common styles for both PinnedApps and Taskbar buttons
+    button {
+        @include button($flat: true, $reactive: false);
+        background-color: $bg;
+        border-radius: 0;
+        padding: 2;
+
+        &.running-indicator {
+            background-color: #302020;
+        }
+
+        // Styles for indicators
+        &.indicator {
+            background-color: #302020;
+        }
+
+        // Styles for focused indicators
+        &.focused {
+            background-color: #302020;
+        }
+    }
+}
+
