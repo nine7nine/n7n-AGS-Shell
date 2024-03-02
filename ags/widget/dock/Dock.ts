@@ -42,9 +42,6 @@ const AppButton = ({ icon, pinned = false, isRunning = false, term, ...rest }: B
             const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
             const index = running.findIndex(c => c === focused);
 
-            //console.log('Running Apps:', running);
-            //console.log('Focused App:', focused);
-
             for (let i = 0; i < 5; ++i) {
                 const indicator = indicators[i];
                 if (indicator) {
@@ -64,10 +61,7 @@ const Taskbar = (): Gtk.Box & BoxProps => {
     return Widget.Box({
         vertical: false,
         binds: [['children', hyprland, 'clients', c => {
-            //console.log('All Clients:', c);
-
             const mappedClients = c.filter(client => client.mapped); // Filter mapped clients
-            //console.log('Mapped Clients:', mappedClients);
 
             const validClients = mappedClients.filter(client => (
                 typeof client.class === 'string' &&
@@ -75,15 +69,12 @@ const Taskbar = (): Gtk.Box & BoxProps => {
                 typeof client.initialClass === 'string' &&
                 (client.class !== '' || client.title !== '' || client.initialClass !== '')
             ));
-            //console.log('Valid Clients:', validClients);
 
             const focusedAddress = hyprland.active.client?.address;
 
             const running = validClients.filter(client => (
                 client.mapped
             ));
-
-            //console.log('Running Apps:', running);
 
             const focused = running.find(client => client.address === focusedAddress);
             console.log('Focused App:', focused);
@@ -102,9 +93,7 @@ const Taskbar = (): Gtk.Box & BoxProps => {
                 }
 
                 for (const appName of options.dock.pinnedApps.value) {
-                    //console.log('appName:', appName);
                     if (typeof appName !== 'string') {
-                        //console.error('Invalid appName:', appName);
                         continue;
                     }
 
@@ -147,7 +136,6 @@ const PinnedApps = (): Gtk.Box & BoxProps => Widget.Box({
         .filter(({ app }) => app)
         .map(({ app, term = true }) => {
             if (typeof app !== 'object' || typeof term !== 'string') {
-                //console.error('Invalid app or term:', app, term);
                 return null;
             }
 

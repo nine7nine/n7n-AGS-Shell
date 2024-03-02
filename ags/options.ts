@@ -13,7 +13,7 @@ const options = mkOptions(OPTIONS, {
         dark: {
             primary: {
                 bg: opt("#51a4e7"),
-                fg: opt("#242424"),
+                fg: opt("#444444"),
             },
             error: {
                 bg: opt("#e55f86"),
@@ -155,7 +155,7 @@ const options = mkOptions(OPTIONS, {
     },
 
     dock: {
-        iconSize: opt(36),
+        iconSize: opt(32),
         pinnedApps: opt([
             "org.gnome.Console",
             "org.gnome.Nautilus",

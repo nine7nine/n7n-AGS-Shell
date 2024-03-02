@@ -8,23 +8,35 @@
 
     // Common styles for both PinnedApps and Taskbar buttons
     button {
-        @include button($flat: true, $reactive: false);
+        @include button($flat: true);
         background-color: $bg;
         border-radius: 0;
-        padding: 2;
+        padding: 1;
 
-        &.running-indicator {
+        .box {
+            margin: 0px;
+            min-width: 1px;
+            min-height: 0em;
+        }
+
+        image {
+            margin: 4px;
+        }
+
+         &.running-indicator {
             background-color: #302020;
         }
 
-        // Styles for indicators
-        &.indicator {
-            background-color: #302020;
-        }
+        .indicator {
+            min-width: 4px;
+            min-height: 4px;
+            background-color: $fg;
+            //border-radius: $radii;
+            margin-bottom: 0px;
 
-        // Styles for focused indicators
-        &.focused {
-            background-color: #302020;
+            &.focused {
+                background-image: $active-gradient;
+            }
         }
     }
 }
