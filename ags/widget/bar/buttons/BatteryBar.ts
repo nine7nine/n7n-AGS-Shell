@@ -16,7 +16,7 @@ const Indicator = () => Widget.Icon({
 const PercentLabel = () => Widget.Revealer({
     transition: "slide_right",
     click_through: true,
-    reveal_child: percentage.bind(),
+    reveal_child: true,
     child: Widget.Label({
         label: battery.bind("percent").as(p => `${p}%`),
     }),

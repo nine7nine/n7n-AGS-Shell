@@ -39,17 +39,17 @@ const options = mkOptions(OPTIONS, {
             border: opt("#080808"),
         },
 
-        blur: opt(3),
+        blur: opt(10),
         scheme: opt<"dark" | "light">("dark"),
         widget: { opacity: opt(94) },
         border: {
-            width: opt(2),
+            width: opt(3),
             opacity: opt(94),
         },
 
         shadows: opt(false),
         padding: opt(5),
-        spacing: opt(5),
+        spacing: opt(3),
         radius: opt(5),
     },
 
@@ -168,7 +168,7 @@ const options = mkOptions(OPTIONS, {
             "whatsapp web",
             "tm",
             "code",
-            "chatgpt",
+            "noi",
             "rnote",
             "gimp-2.99",
             "inkscape",

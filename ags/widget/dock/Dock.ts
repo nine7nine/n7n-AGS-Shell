@@ -33,24 +33,32 @@ const AppButton = ({ icon, pinned = false, isRunning = false, term, ...rest }: B
                 ],
             }),
         }),
-        connections: [[hyprland, button => {
-            const running = hyprland.clients.filter(client => (
-                typeof client.class === 'string' && typeof client.title === 'string' && typeof client.initialClass === 'string' &&
-                (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
-            ));
-
-            const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
-            const index = running.findIndex(c => c === focused);
-
-            for (let i = 0; i < 5; ++i) {
-                const indicator = indicators[i];
-                if (indicator) {
-                    indicator.visible = i < running.length;
-                    indicator.toggleClassName('focused', i === index);
-                }
-            }
-        }]],
     });
+
+    const updateIndicators = () => {
+        const running = hyprland.clients.filter(client => (
+            typeof client.class === 'string' && typeof client.title === 'string' && typeof client.initialClass === 'string' &&
+            (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
+        ));
+
+        const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
+        const index = running.findIndex(c => c === focused);
+
+        for (let i = 0; i < 5; ++i) {
+            const indicator = indicators[i];
+            if (indicator) {
+                indicator.visible = i < running.length;
+                indicator.toggleClassName('focused', i === index);
+            }
+        }
+    };
+
+    // Use reactivity methods consistently
+    button
+        .on('enter-notify-event', updateIndicators)
+        .on('leave-notify-event', updateIndicators)
+        .hook(hyprland, updateIndicators, 'client-added')
+        .hook(hyprland, updateIndicators, 'client-removed');
 
     return Object.assign(button, { indicators });
 };
@@ -61,7 +69,7 @@ const Taskbar = (): Gtk.Box & BoxProps => {
     return Widget.Box({
         vertical: false,
         binds: [['children', hyprland, 'clients', c => {
-            const mappedClients = c.filter(client => client.mapped); // Filter mapped clients
+            const mappedClients = c.filter(client => client.mapped);
 
             const validClients = mappedClients.filter(client => (
                 typeof client.class === 'string' &&
@@ -72,9 +80,7 @@ const Taskbar = (): Gtk.Box & BoxProps => {
 
             const focusedAddress = hyprland.active.client?.address;
 
-            const running = validClients.filter(client => (
-                client.mapped
-            ));
+            const running = validClients.filter(client => client.mapped);
 
             const focused = running.find(client => client.address === focusedAddress);
             console.log('Focused App:', focused);
@@ -117,7 +123,45 @@ const Taskbar = (): Gtk.Box & BoxProps => {
                                 c.class === client.class ||
                                 c.initialClass === client.initialClass
                             )),
-                        });
+                        })
+                        .hook(hyprland, button => {
+                            const running = hyprland.clients
+                                .filter(client => (
+                                    typeof client.class === 'string' &&
+                                    typeof client.title === 'string' &&
+                                    typeof client.initialClass === 'string' &&
+                                    (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
+                                ));
+
+                            const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
+                            const index = running.findIndex(c => c === focused);
+
+                            for (let i = 0; i < 5; ++i) {
+                                const indicator = button.indicators.children[i];
+                                indicator.visible = i < running.length;
+                                indicator.toggleClassName('focused', i === index);
+                            }
+                        }, 'client-added')
+                        .hook(hyprland, button => {
+                            const running = hyprland.clients
+                                .filter(client => (
+                                    typeof client.class === 'string' &&
+                                    typeof client.title === 'string' &&
+                                    typeof client.initialClass === 'string' &&
+                                    (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
+                                ));
+
+                            const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
+                            const index = running.findIndex(c => c === focused);
+
+                            for (let i = 0; i < 5; ++i) {
+                                const indicator = button.indicators.children[i];
+                                indicator.visible = i < running.length;
+                                indicator.toggleClassName('focused', i === index);
+                            }
+                        }, 'client-removed')
+                        .on('enter-notify-event', () => updateIndicators(button, term, indicators))
+                        .on('leave-notify-event', () => updateIndicators(button, term, indicators));
                     }
                 }
 
@@ -127,39 +171,62 @@ const Taskbar = (): Gtk.Box & BoxProps => {
     });
 };
 
-const PinnedApps = (): Gtk.Box & BoxProps => Widget.Box({
-    class_name: 'pins',
-    vertical: true,
-    homogeneous: true,
-    binds: [['children', options.dock.pinnedApps, 'value', v => v
-        .map(term => ({ app: applications.query(term)?.[0], term }))
-        .filter(({ app }) => app)
-        .map(({ app, term = true }) => {
-            if (typeof app !== 'object' || typeof term !== 'string') {
-                return null;
-            }
 
-            return AppButton({
-                pinned: true,
-                icon: app.icon_name || '',
-                term,
-                on_primary_click: () => {
-                    const matchingClients = hyprland.clients.filter(client => (
-                        typeof client.class === 'string' &&
-                        typeof client.title === 'string' &&
-                        typeof client.initialClass === 'string' &&
-                        (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
-                    ));
+const PinnedApps = (): Gtk.Box & BoxProps => {
+    const updateIndicators = (button, term, indicators) => {
+        const running = hyprland.clients
+            .filter(client => (
+                typeof client.class === 'string' &&
+                typeof client.title === 'string' &&
+                typeof client.initialClass === 'string' &&
+                (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
+            ));
 
-                    if (matchingClients.length > 0) {
-                        const address = matchingClients[0].address;
-                        address && focus(address);
-                    } else {
-                        launchApp(app);
-                    }
-                },
-                on_secondary_click: () => launchApp(app),
-                connections: [[hyprland, button => {
+        const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
+        const index = running.findIndex(c => c === focused);
+
+        for (let i = 0; i < 5; ++i) {
+            const indicator = button.indicators.children[i];
+            indicator.visible = i < running.length;
+            indicator.toggleClassName('focused', i === index);
+        }
+    };
+
+    return Widget.Box({
+        class_name: 'pins',
+        vertical: true,
+        homogeneous: true,
+        binds: [['children', options.dock.pinnedApps, 'value', v => v
+            .map(term => ({ app: applications.query(term)?.[0], term }))
+            .filter(({ app }) => app)
+            .map(({ app, term = true }) => {
+                if (typeof app !== 'object' || typeof term !== 'string') {
+                    return null;
+                }
+
+                const button = AppButton({
+                    pinned: true,
+                    icon: app.icon_name || '',
+                    term,
+                    on_primary_click: () => {
+                        const matchingClients = hyprland.clients.filter(client => (
+                            typeof client.class === 'string' &&
+                            typeof client.title === 'string' &&
+                            typeof client.initialClass === 'string' &&
+                            (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
+                        ));
+
+                        if (matchingClients.length > 0) {
+                            const address = matchingClients[0].address;
+                            address && focus(address);
+                        } else {
+                            launchApp(app);
+                        }
+                    },
+                    on_secondary_click: () => launchApp(app),
+                });
+
+                button.hook(hyprland, button => {
                     const running = hyprland.clients
                         .filter(client => (
                             typeof client.class === 'string' &&
@@ -176,18 +243,33 @@ const PinnedApps = (): Gtk.Box & BoxProps => Widget.Box({
                         indicator.visible = i < running.length;
                         indicator.toggleClassName('focused', i === index);
                     }
-                }]],
-            });
-        }),
-    ]],
-});
+                }, 'client-added')
+                .hook(hyprland, button => {
+                    const running = hyprland.clients
+                        .filter(client => (
+                            typeof client.class === 'string' &&
+                            typeof client.title === 'string' &&
+                            typeof client.initialClass === 'string' &&
+                            (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
+                        ));
 
-const Separator = (): Gtk.Separator & SeparatorProps => Widget.Separator({
-    vpack: 'center',
-    hpack: 'center',
-    orientation: 1,
-    connections: [[hyprland, box => (box.visible = taskbar.children.length > 0)]],
-});
+                    const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
+                    const index = running.findIndex(c => c === focused);
+
+                    for (let i = 0; i < 5; ++i) {
+                        const indicator = button.indicators.children[i];
+                        indicator.visible = i < running.length;
+                        indicator.toggleClassName('focused', i === index);
+                    }
+                }, 'client-removed')
+                .on('enter-notify-event', () => updateIndicators(button, term, button.indicators))
+                .on('leave-notify-event', () => updateIndicators(button, term, button.indicators));
+
+                return button;
+            }),
+        ]],
+    });
+};
 
 const Dock = (): Gtk.Box & BoxProps => Widget.Box({
     class_name: 'dock',
