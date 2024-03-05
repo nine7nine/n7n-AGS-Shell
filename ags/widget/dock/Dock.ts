@@ -29,33 +29,32 @@ const updateIndicators = (button, term, indicators) => {
     });
 };
 
-const AppButton = ({ icon, pinned = false, isRunning = false, term, ...rest }: ButtonProps & { term?: string }): Gtk.Button & ButtonProps => {
+const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term?: string }): Gtk.Button & ButtonProps => {
     const indicators = range(5, 0).map(() => Widget.Box({
         class_name: 'indicator',
         visible: false,
     }));
 
+    const buttonBox = Widget.Box({
+        class_name: 'box',
+        child: Widget.Icon({
+            icon,
+            binds: [['size', options.dock.iconSize]],
+        }),
+    });
+
     const button = Widget.Button({
         ...rest,
-        class_name: isRunning ? 'running-indicator' : '',
-        child: Widget.Box({
-            class_name: 'box',
-            child: Widget.Overlay({
-                child: Widget.Icon({
-                    icon,
-                    binds: [['size', options.dock.iconSize]],
-                }),
-                pass_through: true,
-                overlays: [
-                    pinned ? indicators : [],
-                ],
-            }),
+        class_name: '',
+        child: pinned ? buttonBox : Widget.Overlay({
+            child: buttonBox,
+            pass_through: true,
+            overlays: [indicators],
         }),
     });
 
     const updateIndicatorsInternal = () => updateIndicators(button, term, indicators);
 
-    // Use reactivity methods consistently
     button
         .on('enter-notify-event', updateIndicatorsInternal)
         .on('leave-notify-event', updateIndicatorsInternal)
@@ -84,6 +83,7 @@ const createAppButton = ({ app, term, ...params }) => {
     return button;
 };
 
+
 const Taskbar = (): Gtk.Box & BoxProps => {
     const addedApps = new Set<string>();
 
@@ -97,11 +97,8 @@ const Taskbar = (): Gtk.Box & BoxProps => {
                 ));
 
             const focusedAddress = hyprland.active.client && hyprland.active.client.address;
-
             const running = validClients.filter(client => client.mapped);
             const focused = running.find(client => client.address === focusedAddress);
-
-            console.log('Focused App:', focused);
 
             return validClients.map(client => {
                 if (!client.class || !client.title || !client.initialClass) {
@@ -133,11 +130,6 @@ const Taskbar = (): Gtk.Box & BoxProps => {
                                 clickAddress && focus(clickAddress);
                             },
                             on_secondary_click: () => launchApp(app),
-                            isRunning: running.some(c => (
-                                c.title === client.title ||
-                                c.class === client.class ||
-                                c.initialClass === client.initialClass
-                            )),
                         });
                     }
                 }
@@ -192,4 +184,3 @@ const Dock = (): Gtk.Box & BoxProps => Widget.Box({
 });
 
 export default Dock;
-

@@ -14,8 +14,8 @@
         padding: 1;
 
         .box {
-            margin: 0px;
-            min-width: 1px;
+            margin: 0em;
+            min-width: 1em;
             min-height: 0em;
         }
 
@@ -24,18 +24,14 @@
         }
 
          &.running-indicator {
-            background-color: #302020;
+            background-color: $bg;
         }
 
         .indicator {
-            min-width: 4px;
-            min-height: 4px;
-            background-color: $fg;
-            //border-radius: $radii;
-            margin-bottom: 0px;
+            background-color: $bg;
 
             &.focused {
-                background-image: $active-gradient;
+                background-color: $fg;
             }
         }
     }
