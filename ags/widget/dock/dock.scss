@@ -3,13 +3,13 @@
 .dock {
     @include floating-widget;
     border-radius: $radius;
+    background-color: transparentize($bg, 0.15);
     min-width: 0;
     padding: 6;
 
     // Common styles for both PinnedApps and Taskbar buttons
     button {
         @include button($flat: true);
-        background-color: $bg;
         border-radius: 0;
         padding: 1;
 
@@ -24,14 +24,14 @@
         }
 
          &.running-indicator {
-            background-color: $bg;
+            background-color: transparentize($bg, 0.15);
         }
 
         .indicator {
-            background-color: $bg;
+            background-color: transparentize($bg, 0.15);
 
             &.focused {
-                background-color: $fg;
+                background-color: transparentize($fg, 0.8);
             }
         }
     }
