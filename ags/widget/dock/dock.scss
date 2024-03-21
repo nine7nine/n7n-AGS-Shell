@@ -3,7 +3,7 @@
 .dock {
     @include floating-widget;
     border-radius: $radius;
-    background-color: transparentize($bg, 0.15);
+    background-color: transparentize($bg, 0.02);
     min-width: 0;
     padding: 6;
 
@@ -11,7 +11,7 @@
     button {
         @include button($flat: true);
         border-radius: 0;
-        padding: 1;
+        padding: 2;
 
         .box {
             margin: 0em;
@@ -24,14 +24,14 @@
         }
 
          &.running-indicator {
-            background-color: transparentize($bg, 0.15);
+            background-color: transparentize($bg, 0.02);
         }
 
         .indicator {
-            background-color: transparentize($bg, 0.15);
+            background-color: transparentize($fg, 0.02);
 
             &.focused {
-                background-color: transparentize($fg, 0.8);
+                background-color: transparentize($fg, 0.02);
             }
         }
     }

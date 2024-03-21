@@ -32,14 +32,16 @@ const updateIndicators = (button, term, indicators) => {
 const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term?: string }): Gtk.Button & ButtonProps => {
     const indicators = range(5, 0).map(() => Widget.Box({
         class_name: 'indicator',
-        visible: false,
+        visible: true,
     }));
+
+    const iconSize = options.dock.iconSize;
 
     const buttonBox = Widget.Box({
         class_name: 'box',
         child: Widget.Icon({
             icon,
-            binds: [['size', options.dock.iconSize]],
+            size: iconSize,
         }),
     });
 
@@ -64,6 +66,7 @@ const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term
     return Object.assign(button, { indicators });
 };
 
+
 const createAppButton = ({ app, term, ...params }) => {
     const button = AppButton({
         icon: app.icon_name || '',
@@ -87,69 +90,70 @@ const createAppButton = ({ app, term, ...params }) => {
 const Taskbar = (): Gtk.Box & BoxProps => {
     const addedApps = new Set<string>();
 
-    return Widget.Box({
-        vertical: false,
-        binds: [['children', hyprland, 'clients', c => {
-            const validClients = c
-                .filter(client => (
-                    client.mapped &&
-                    [client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')
-                ));
+    const updateTaskbar = (clients: any[]) => {
+        const validClients = clients.filter(client => (
+            client.mapped &&
+            [client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')
+        ));
 
-            const focusedAddress = hyprland.active.client && hyprland.active.client.address;
-            const running = validClients.filter(client => client.mapped);
-            const focused = running.find(client => client.address === focusedAddress);
+        const focusedAddress = hyprland.active.client && hyprland.active.client.address;
+        const running = validClients.filter(client => client.mapped);
+        const focused = running.find(client => client.address === focusedAddress);
 
-            return validClients.map(client => {
-                if (!client.class || !client.title || !client.initialClass) {
-                    return null;
-                }
-
-                if (addedApps.has(client.title)) {
-                    return null;
-                }
-
-                for (const appName of options.dock.pinnedApps.value) {
-                    if (!appName || typeof appName !== 'string') {
-                        continue;
-                    }
-
-                    if (client.class.includes(appName) || client.title.includes(appName) || client.initialClass.includes(appName)) {
-                        return null;
-                    }
-                }
-
-                for (const app of applications.list) {
-                    if (app.match(client.title) || app.match(client.class) || app.match(client.initialClass)) {
-                        addedApps.add(client.title);
-                        return createAppButton({
-                            app,
-                            term: app.title,
-                            on_primary_click: () => {
-                                const clickAddress = client.address || focusedAddress;
-                                clickAddress && focus(clickAddress);
-                            },
-                            on_secondary_click: () => launchApp(app),
-                        });
-                    }
-                }
-
+        const taskbarContent = validClients.map(client => {
+            if (!client.class || !client.title || !client.initialClass) {
                 return null;
-            });
-        }]],
-    });
+            }
+
+            if (addedApps.has(client.title)) {
+                return null;
+            }
+
+            for (const appName of options.dock.pinnedApps.value) {
+                if (!appName || typeof appName !== 'string') {
+                    continue;
+                }
+
+                if (client.class.includes(appName) || client.title.includes(appName) || client.initialClass.includes(appName)) {
+                    return null;
+                }
+            }
+
+            for (const app of applications.list) {
+                if (app.match(client.title) || app.match(client.class) || app.match(client.initialClass)) {
+                    addedApps.add(client.title);
+                    return createAppButton({
+                        app,
+                        term: app.title,
+                        on_primary_click: () => {
+                            const clickAddress = client.address || focusedAddress;
+                            clickAddress && focus(clickAddress);
+                        },
+                        on_secondary_click: () => launchApp(app),
+                    });
+                }
+            }
+
+            return null;
+        });
+
+        return taskbarContent;
+    };
+
+    return Widget.Box({
+        vertical: true,
+    })
+    .bind('children', hyprland, 'clients', updateTaskbar);
 };
+
 
 const PinnedApps = (): Gtk.Box & BoxProps => {
     const updateIndicatorsInternal = (button, term, indicators) => {
         updateIndicators(button, term, indicators);
     };
 
-    return Widget.Box({
-        class_name: 'pins',
-        vertical: true,
-        homogeneous: true,
-        binds: [['children', options.dock.pinnedApps, 'value', v => v
+    const updatePinnedApps = (pinnedApps: string[]) => {
+        return pinnedApps
             .map(term => ({ app: applications.query(term)?.[0], term }))
             .filter(({ app }) => app)
             .map(({ app, term = true }) => createAppButton({
@@ -172,9 +176,15 @@ const PinnedApps = (): Gtk.Box & BoxProps => {
                     }
                 },
                 on_secondary_click: () => launchApp(app),
-            })),
-        ]],
-    });
+            }));
+    };
+
+    return Widget.Box({
+        class_name: 'pins',
+        vertical: true,
+        homogeneous: true,
+    })
+    .bind('children', options.dock.pinnedApps, 'value', updatePinnedApps);
 };
 
 const Dock = (): Gtk.Box & BoxProps => Widget.Box({
