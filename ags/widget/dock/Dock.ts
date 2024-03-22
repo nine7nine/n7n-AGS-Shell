@@ -43,21 +43,25 @@ const createAppButton = ({ app, term, ...params }) => {
     return button;
 };
 
+const filterValidClients = (clients: any[]) => {
+    return clients.filter(client => (
+        client.mapped &&
+        [client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')
+    ));
+};
+
 const Taskbar = (): Gtk.Box & BoxProps => {
     const addedApps = new Set<string>();
 
     const updateTaskbar = (clients: any[]) => {
-        const validClients = clients.filter(client => (
-            client.mapped &&
-            [client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')
-        ));
+        const validClients = filterValidClients(clients);
 
-        const focusedAddress = hyprland.active.client && hyprland.active.client.address;
+        const focusedAddress = hyprland?.active.client?.address;
         const running = validClients.filter(client => client.mapped);
         const focused = running.find(client => client.address === focusedAddress);
 
         const taskbarContent = validClients.map(client => {
-            if (!client.class || !client.title || !client.initialClass) {
+            if (![client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')) {
                 return null;
             }
 
@@ -75,19 +79,21 @@ const Taskbar = (): Gtk.Box & BoxProps => {
                 }
             }
 
-            for (const app of applications.list) {
-                if (app.match(client.title) || app.match(client.class) || app.match(client.initialClass)) {
-                    addedApps.add(client.title);
-                    return createAppButton({
-                        app,
-                        term: app.title,
-                        on_primary_click: () => {
-                            const clickAddress = client.address || focusedAddress;
-                            clickAddress && focus(clickAddress);
-                        },
-                        on_secondary_click: () => launchApp(app),
-                    });
-                }
+            const matchingApp = applications?.list.find(app => (
+                app.match(client.title) || app.match(client.class) || app.match(client.initialClass)
+            ));
+
+            if (matchingApp) {
+                addedApps.add(client.title);
+                return createAppButton({
+                    app: matchingApp,
+                    term: matchingApp.title,
+                    on_primary_click: () => {
+                        const clickAddress = client.address || focusedAddress;
+                        clickAddress && focus(clickAddress);
+                    },
+                    on_secondary_click: () => launchApp(matchingApp),
+                });
             }
 
             return null;
@@ -105,14 +111,14 @@ const Taskbar = (): Gtk.Box & BoxProps => {
 const PinnedApps = (): Gtk.Box & BoxProps => {
     const updatePinnedApps = (pinnedApps: string[]) => {
         return pinnedApps
-            .map(term => ({ app: applications.query(term)?.[0], term }))
+            .map(term => ({ app: applications?.query(term)?.[0], term }))
             .filter(({ app }) => app)
             .map(({ app, term = true }) => createAppButton({
                 app,
                 term,
                 pinned: true,
                 on_primary_click: () => {
-                    const matchingClients = hyprland.clients.filter(client => (
+                    const matchingClients = hyprland?.clients.filter(client => (
                         typeof client.class === 'string' &&
                         typeof client.title === 'string' &&
                         typeof client.initialClass === 'string' &&
