@@ -6,35 +6,10 @@ import { type BoxProps } from "types/widgets/box";
 
 const hyprland = await Service.import("hyprland");
 const applications = await Service.import("applications");
-const range = (start: number, end: number) => Array.from({ length: end - start + 1 }, (_, i) => start + i);
+
 const focus = (address: string) => hyprland.messageAsync(`dispatch focuswindow address:${address}`);
 
-const updateIndicators = (button, term, indicators) => {
-    const running = hyprland.clients
-        .filter(client => (
-            typeof client.class === 'string' &&
-            typeof client.title === 'string' &&
-            typeof client.initialClass === 'string' &&
-            (client.class.includes(term) || client.title.includes(term) || client.initialClass.includes(term))
-        ));
-
-    const focused = running.find(client => client.address === (hyprland.active.client && hyprland.active.client.address));
-    const index = running.findIndex(c => c === focused);
-
-    indicators.map((indicator, i) => {
-        if (indicator) {
-            indicator.visible = i < running.length;
-            indicator.toggleClassName('focused', i === index);
-        }
-    });
-};
-
 const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term?: string }): Gtk.Button & ButtonProps => {
-    const indicators = range(5, 0).map(() => Widget.Box({
-        class_name: 'indicator',
-        visible: true,
-    }));
-
     const iconSize = options.dock.iconSize;
 
     const buttonBox = Widget.Box({
@@ -51,21 +26,12 @@ const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term
         child: pinned ? buttonBox : Widget.Overlay({
             child: buttonBox,
             pass_through: true,
-            overlays: [indicators],
+            overlays: [],
         }),
     });
 
-    const updateIndicatorsInternal = () => updateIndicators(button, term, indicators);
-
-    button
-        .on('enter-notify-event', updateIndicatorsInternal)
-        .on('leave-notify-event', updateIndicatorsInternal)
-        .hook(hyprland, updateIndicatorsInternal, 'client-added')
-        .hook(hyprland, updateIndicatorsInternal, 'client-removed');
-
-    return Object.assign(button, { indicators });
+    return Object.assign(button, {});
 };
-
 
 const createAppButton = ({ app, term, ...params }) => {
     const button = AppButton({
@@ -74,18 +40,8 @@ const createAppButton = ({ app, term, ...params }) => {
         ...params,
     });
 
-    button.hook(hyprland, button => {
-        updateIndicators(button, term, button.indicators);
-    }, 'client-added')
-    .hook(hyprland, button => {
-        updateIndicators(button, term, button.indicators);
-    }, 'client-removed')
-    .on('enter-notify-event', () => updateIndicators(button, term, button.indicators))
-    .on('leave-notify-event', () => updateIndicators(button, term, button.indicators));
-
     return button;
 };
-
 
 const Taskbar = (): Gtk.Box & BoxProps => {
     const addedApps = new Set<string>();
@@ -146,12 +102,7 @@ const Taskbar = (): Gtk.Box & BoxProps => {
     .bind('children', hyprland, 'clients', updateTaskbar);
 };
 
-
 const PinnedApps = (): Gtk.Box & BoxProps => {
-    const updateIndicatorsInternal = (button, term, indicators) => {
-        updateIndicators(button, term, indicators);
-    };
-
     const updatePinnedApps = (pinnedApps: string[]) => {
         return pinnedApps
             .map(term => ({ app: applications.query(term)?.[0], term }))
@@ -194,3 +145,4 @@ const Dock = (): Gtk.Box & BoxProps => Widget.Box({
 });
 
 export default Dock;
+
