@@ -1,6 +1,6 @@
 import "lib/session"
-import "lib/init"
 import "style/style"
+import init from "lib/init"
 import options from "options"
 import Bar from "widget/bar/Bar"
 import Applauncher from "widget/applauncher/Applauncher"
@@ -20,6 +20,7 @@ App.config({
     onConfigParsed: () => {
         setupQuickSettings()
         setupDateMenu()
+        init()
     },
     closeWindowDelay: {
         "applauncher": options.transition.value,
