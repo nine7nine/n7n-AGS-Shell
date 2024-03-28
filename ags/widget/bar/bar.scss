@@ -49,33 +49,32 @@ $button-radius: $radius;
     }
 
     .workspaces {
-        label {
+        button {
             font-size: 0;
             min-width: 16pt;
             min-height: 14pt;
-            border-radius: $radius*.4;
+            border-radius: $radius*.2;
             box-shadow: inset 0 0 0 $border-width $border-color;
-            margin: 0 $padding * .5;
+            margin: 0 $padding * .2;
             transition: $transition* .5;
             background-color: transparentize($fg, .95);
 
             &.occupied {
                 background-color: transparentize($fg, .90);
-                min-width: 24pt;
-                min-height: 18pt;
+                min-width: 16pt;
+                min-height: 14pt;
             }
 
             &.active {
-                // background-color: $primary-bg;
-                background-image: $active-gradient;
-                min-width: 24pt;
-                min-height: 18pt;
+                background-color: transparentize($primary-bg, .2);
+                min-width: 16pt;
+                min-height: 14pt;
             }
         }
 
         &.active,
         &:active {
-            label {
+            button {
                 background-color: transparentize($primary-fg, .3);
 
                 &.occupied {
