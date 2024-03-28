@@ -28,6 +28,7 @@ const createFloatingDock = (monitor: number): Gtk.Window & WindowProps => {
     const window = Widget.Window({
         monitor,
         halign: 'fill',
+        layer: "top",
         name: `dock${monitor}`,
         class_name: 'floating-dock',
         anchor: ['left'],
