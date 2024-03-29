@@ -30,7 +30,6 @@ const SysButton = (action: Action) => Widget.Button({
 
 export const Header = () => Widget.Box(
     { class_name: "header horizontal" },
-    Avatar(),
     Widget.Box({
         vertical: true,
         vpack: "center",

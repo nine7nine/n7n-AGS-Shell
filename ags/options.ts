@@ -203,9 +203,9 @@ const options = mkOptions(OPTIONS, {
     quicksettings: {
         avatar: {
             image: opt(`/var/lib/AccountsService/icons/${Utils.USER}`),
-            size: opt(70),
+            size: opt(90),
         },
-        width: opt(380),
+        width: opt(450),
         position: opt<"left" | "center" | "right">("right"),
         networkSettings: opt("gtk-launch iwgtk"),
         media: {
