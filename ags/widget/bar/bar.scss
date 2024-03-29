@@ -38,6 +38,12 @@ $button-radius: $radius;
     }
 
     .launcher {
+
+        image {
+            font-weight: bold;
+            font-size: 28px;
+        }
+
         .colored {
             color: transparentize($primary-bg, 0.2);
         }
@@ -99,8 +105,8 @@ $button-radius: $radius;
     .taskbar .indicator.active {
         background-color: $primary-bg;
         border-radius: $radius;
-        min-height: 4pt;
-        min-width: 6pt;
+        min-height: 1pt;
+        min-width: 16pt;
         margin: 2pt;
     }
 

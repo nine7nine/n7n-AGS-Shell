@@ -53,7 +53,7 @@ const options = mkOptions(OPTIONS, {
         radius: opt(5),
     },
 
-    transition: opt(80),
+    transition: opt(100),
 
     font: {
         size: opt(13),
@@ -87,7 +87,7 @@ const options = mkOptions(OPTIONS, {
         launcher: {
             icon: {
                 colored: opt(true),
-                icon: opt(icon(distro, icons.ui.search)),
+                icon: opt(icon(icons.ui.arch)),
             },
             label: {
                 colored: opt(false),
@@ -154,7 +154,7 @@ const options = mkOptions(OPTIONS, {
     },
 
     dock: {
-        iconSize: opt(32),
+        iconSize: opt(42),
         pinnedApps: opt([
             "org.gnome.Console",
             "org.gnome.Nautilus",

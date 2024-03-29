@@ -131,5 +131,6 @@ const Applauncher = () => {
 export default () => PopupWindow({
     name: "applauncher",
     layout: "top-left",
+    transition: "crossfade",
     child: Applauncher(),
 })

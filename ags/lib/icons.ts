@@ -21,6 +21,7 @@ export default {
         audio: "audio-x-generic",
     },
     ui: {
+        arch: "archlinux-logo",
         close: "window-close",
         colorpicker: "color-select",
         info: "info",
