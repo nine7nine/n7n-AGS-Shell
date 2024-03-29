@@ -47,10 +47,10 @@ const Settings = () => Widget.Box({
             [ProfileSelector],
         ), */
         Row([MicMute, DND]),
-        Widget.Box({
+        /*Widget.Box({
             visible: media.as(l => l.length > 0),
             child: Media(),
-        }),
+        }), */
         Widget.Box({
             class_name: "sliders-box vertical",
             vertical: true,

@@ -10,15 +10,15 @@ window#quicksettings .quicksettings {
     }
 
     .header {
-        @include spacing(.5);
+        @include spacing(1.5);
         color: transparentize($fg, .15);
 
         button {
             @include button;
-            padding: $padding;
+            padding: $padding * 1.4;
 
             image {
-                font-size: 1.4em;
+                font-size: 2.6em;
             }
         }
     }
@@ -29,7 +29,7 @@ window#quicksettings .quicksettings {
 
         button {
             @include button($flat: true);
-            padding: $padding * .5;
+            padding: $padding * 0.5;
         }
 
         .volume button.arrow:last-child {
@@ -38,12 +38,12 @@ window#quicksettings .quicksettings {
 
         .volume,
         .brightness {
-            padding: $padding * .5;
+            padding: $padding * 1.5;
         }
 
         scale {
             @include slider;
-            margin: 0 ($spacing * .5);
+            margin: 0 ($spacing * 1.5);
 
             &.muted highlight {
                 background-image: none;
@@ -78,15 +78,15 @@ window#quicksettings .quicksettings {
 
         button {
             @include button($flat: true);
-            padding: ($padding * .5);
+            padding: ($padding * 0.5);
 
             image:first-child {
-                margin-right: $spacing * .5;
+                margin-right: $spacing * 1.5;
             }
         }
 
         .bluetooth-devices {
-            @include spacing(.5);
+            @include spacing(1.5);
         }
 
         switch {
@@ -95,11 +95,11 @@ window#quicksettings .quicksettings {
     }
 
     .sliders-box .menu {
-        margin: ($spacing * .5) 0;
+        margin: ($spacing * 1.5) 0;
 
         &.app-mixer {
             .mixer-item {
-                padding: $padding * .5;
+                padding: $padding * 1.5;
                 padding-left: 0;
                 padding-right: $padding * 2;
 
@@ -120,7 +120,7 @@ window#quicksettings .quicksettings {
         font-weight: bold;
 
         image {
-            font-size: 1.3em;
+            font-size: 2.6em;
         }
 
         label {
@@ -131,7 +131,7 @@ window#quicksettings .quicksettings {
             @include button($flat: true);
 
             &:first-child {
-                padding: $padding * 1.2;
+                padding: $padding * 1.5;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
             }
@@ -163,7 +163,7 @@ window#quicksettings .quicksettings {
         }
 
         image {
-            font-size: 1.3em;
+            font-size: 2.6em;
         }
     }
 

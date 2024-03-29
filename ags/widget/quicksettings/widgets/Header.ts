@@ -57,6 +57,8 @@ export const Header = () => Widget.Box(
             App.openWindow("settings-dialog")
         },
     }),
+    SysButton("sleep"),
+    SysButton("reboot"),
     SysButton("logout"),
     SysButton("shutdown"),
 )

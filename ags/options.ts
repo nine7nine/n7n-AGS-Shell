@@ -76,14 +76,12 @@ const options = mkOptions(OPTIONS, {
                 "date",
             ]),
             end: opt<BarWidget[]>([
-                "media",
                 "expander",
                 "systray",
                 "colorpicker",
                 "screenrecord",
                 "battery",
                 "system",
-                "powermenu",
             ]),
         },
         launcher: {
@@ -98,7 +96,7 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("applauncher")),
         },
         date: {
-            format: opt("%I:%M%P - %d/%m/%y"),
+            format: opt("%l:%M%P - %d/%m/%y"),
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
@@ -113,7 +111,7 @@ const options = mkOptions(OPTIONS, {
             workspaces: opt(0),
         },
         taskbar: {
-            iconSize: opt(0),
+            iconSize: opt(24),
             monochrome: opt(false),
             exclusive: opt(false),
         },
@@ -127,7 +125,7 @@ const options = mkOptions(OPTIONS, {
             ]),
         },
         media: {
-            monochrome: opt(true),
+            monochrome: opt(false),
             preferred: opt("spotify"),
             direction: opt<"left" | "right">("right"),
             format: opt("{artists} - {title}"),
@@ -209,7 +207,7 @@ const options = mkOptions(OPTIONS, {
         position: opt<"left" | "center" | "right">("right"),
         networkSettings: opt("gtk-launch iwgtk"),
         media: {
-            monochromeIcon: opt(true),
+            monochromeIcon: opt(false),
             coverSize: opt(100),
         },
     },
