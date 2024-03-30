@@ -10,6 +10,8 @@ const { position } = options.bar
 
 const focus = (address: string) => hyprland.messageAsync(
     `dispatch focuswindow address:${address}`)
+const killactive = (address: string) => hyprland.messageAsync(
+    `dispatch killactive address:${address}`)
 
 const DummyItem = (address: string) => Widget.Box({
     attribute: { address },
@@ -30,6 +32,7 @@ const AppItem = (address: string) => {
         ),
         on_primary_click: () => focus(address),
         on_middle_click: () => app && launchApp(app),
+        on_secondary_click: () => killactive(address),
         child: Widget.Icon({
             size: iconSize.bind(),
             icon: monochrome.bind().as(m => icon(
