@@ -34,7 +34,7 @@ export default {
         themes: "preferences-desktop-theme",
         tick: "object-select",
         time: "hourglass",
-        toolbars: "toolbars",
+        toolbars: "toolbars-symbolic",
         warning: "dialog-warning",
         avatar: "avatar-default",
         arrow: {
@@ -63,7 +63,7 @@ export default {
             speaker: "audio-speakers",
             card: "audio-card",
         },
-        mixer: "mixer",
+        mixer: "mixer-symbolic",
     },
     powerprofile: {
         balanced: "power-profile-balanced",
@@ -82,7 +82,7 @@ export default {
         },
     },
     battery: {
-        charging: "battery-flash",
+        charging: "battery-flash-symbolic",
         warning: "battery-empty",
     },
     bluetooth: {
@@ -91,7 +91,7 @@ export default {
     },
     brightness: {
         indicator: "display-brightness",
-        keyboard: "keyboard-brightness",
+        keyboard: "keyboard-brightness-symbolic",
         screen: "display-brightness",
     },
     powermenu: {
@@ -104,9 +104,9 @@ export default {
         recording: "media-record",
     },
     notifications: {
-        noisy: "org.gnome.Settings-notifications",
+        noisy: "org.gnome.Settings-notifications-symbolic",
         silent: "notifications-disabled",
-        message: "chat-bubbles",
+        message: "chat-bubbles-symbolic",
     },
     trash: {
         full: "user-trash-full",
