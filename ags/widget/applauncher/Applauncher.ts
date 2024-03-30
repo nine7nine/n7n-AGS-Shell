@@ -119,7 +119,7 @@ const Applauncher = () => {
     })
 
     return Widget.Box(
-        { vertical: true, css: "padding: 1px" },
+        { vertical: true, css: "padding: 0px" },
         Padding("applauncher", {
             css: margin.bind().as(v => `min-height: ${v}pt;`),
             vexpand: false,

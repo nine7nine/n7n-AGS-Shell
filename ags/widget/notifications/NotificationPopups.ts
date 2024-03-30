@@ -11,13 +11,13 @@ function Animated(id: number) {
     const widget = Notification(n)
 
     const inner = Widget.Revealer({
-        transition: "slide_left",
+        transition: "crossfade",
         transition_duration: transition.value,
         child: widget,
     })
 
     const outer = Widget.Revealer({
-        transition: "slide_down",
+        transition: "crossfade",
         transition_duration: transition.value,
         child: inner,
     })

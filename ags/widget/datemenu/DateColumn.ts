@@ -9,7 +9,9 @@ export default () => Widget.Box({
             children: [
                 Widget.Calendar({
                     hexpand: true,
+                    vexpand: true,
                     hpack: "center",
+                    vpack: "center",
                 }),
             ],
         }),

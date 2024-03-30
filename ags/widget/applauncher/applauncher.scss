@@ -3,8 +3,8 @@
 
 window#applauncher .applauncher {
     @include floating_widget;
-    border-radius: $radius;
-    min-height: 610pt;
+    border-radius: 8px;
+    min-height: 620pt;
 
     .quicklaunch {
         @include spacing;
@@ -17,7 +17,7 @@ window#applauncher .applauncher {
 
     entry {
         @include button;
-        padding: $padding;
+        padding: $padding * 1.9;
         margin: $spacing;
 
         selection {
@@ -43,7 +43,7 @@ window#applauncher .applauncher {
             @include spacing(0.5);
         }
 
-        transition: $transition;
+        transition: $transition * 2;
         padding: $padding;
 
         label {
@@ -59,7 +59,7 @@ window#applauncher .applauncher {
         }
 
         image {
-            transition: $transition;
+            transition: $transition * 2;
         }
 
         &:hover,

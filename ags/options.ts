@@ -159,6 +159,7 @@ const options = mkOptions(OPTIONS, {
             "org.gnome.Console",
             "org.gnome.Nautilus",
             "firefox",
+            "gmail",
             "gnome-system-monitor",
             "gedit",
             "meld",
