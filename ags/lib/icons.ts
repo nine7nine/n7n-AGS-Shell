@@ -21,6 +21,7 @@ export default {
         audio: "audio-x-generic",
     },
     ui: {
+        appkill: "mate-panel-force-quit",
         arch: "archlinux-logo",
         close: "window-close",
         colorpicker: "color-select",

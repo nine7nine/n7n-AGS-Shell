@@ -1,3 +1,4 @@
+import AppKill from "./buttons/AppKill"
 import BatteryBar from "./buttons/BatteryBar"
 import ColorPicker from "./buttons/ColorPicker"
 import Date from "./buttons/Date"
@@ -18,6 +19,7 @@ const pos = options.bar.position.bind()
 export type BarWidget = keyof typeof widget
 
 const widget = {
+    appkill: AppKill,
     battery: BatteryBar,
     colorpicker: ColorPicker,
     date: Date,

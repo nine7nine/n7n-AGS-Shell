@@ -68,6 +68,7 @@ const options = mkOptions(OPTIONS, {
             start: opt<BarWidget[]>([
                 "launcher",
                 "workspaces",
+                "appkill",
                 "taskbar",
                 "expander",
                 "messages",
@@ -94,6 +95,12 @@ const options = mkOptions(OPTIONS, {
                 label: opt(" Applications"),
             },
             action: opt(() => App.toggleWindow("applauncher")),
+        },
+        appkill: {
+            icon: {
+                colored: opt(true),
+                icon: opt(icon(icons.ui.appkill)),
+            },
         },
         date: {
             format: opt("%l:%M%P - %d/%m/%y"),
