@@ -81,7 +81,7 @@ const Applauncher = () => {
         }),
     })
 
-    function focus() {
+    function focus(): void {
         entry.text = "Search"
         entry.set_position(-1)
         entry.select_region(0, -1)
@@ -105,8 +105,9 @@ const Applauncher = () => {
         vertical: true,
         vpack: "start",
         setup: self => self.hook(App, (_, win, visible) => {
-            if (win !== "applauncher")
-                return
+            if (win !== "applauncher") {
+              return
+            }
 
             entry.text = ""
             if (visible)

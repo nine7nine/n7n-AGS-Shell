@@ -10,7 +10,7 @@ const applications = await Service.import("applications");
 const focus = (address: string) => hyprland.messageAsync(`dispatch focuswindow address:${address}`);
 
 const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term?: string }): Gtk.Button & ButtonProps => {
-    const iconSize = options.dock.iconSize;
+    const {iconSize} = options.dock;
 
     const buttonBox = Widget.Box({
         class_name: 'box',
@@ -34,13 +34,11 @@ const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term
 };
 
 const createAppButton = ({ app, term, ...params }) => {
-    const button = AppButton({
-        icon: app.icon_name || '',
-        term,
-        ...params,
-    });
-
-    return button;
+    return AppButton({
+            icon: app.icon_name || '',
+            term,
+            ...params,
+        });
 };
 
 const filterValidClients = (clients: any[]) => {
@@ -60,46 +58,44 @@ const Taskbar = (): Gtk.Box & BoxProps => {
         const running = validClients.filter(client => client.mapped);
         const focused = running.find(client => client.address === focusedAddress);
 
-        const taskbarContent = validClients.map(client => {
-            if (![client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')) {
-                return null;
-            }
-
-            if (addedApps.has(client.title)) {
-                return null;
-            }
-
-            for (const appName of options.dock.pinnedApps.value) {
-                if (!appName || typeof appName !== 'string') {
-                    continue;
-                }
-
-                if (client.class.includes(appName) || client.title.includes(appName) || client.initialClass.includes(appName)) {
+        return validClients.map(client => {
+                    if (![client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')) {
+                        return null;
+                    }
+        
+                    if (addedApps.has(client.title)) {
+                        return null;
+                    }
+        
+                    for (const appName of options.dock.pinnedApps.value) {
+                        if (!appName || typeof appName !== 'string') {
+                            continue;
+                        }
+        
+                        if (client.class.includes(appName) || client.title.includes(appName) || client.initialClass.includes(appName)) {
+                            return null;
+                        }
+                    }
+        
+                    const matchingApp = applications?.list.find(app => (
+                        app.match(client.title) || app.match(client.class) || app.match(client.initialClass)
+                    ));
+        
+                    if (matchingApp) {
+                        addedApps.add(client.title);
+                        return createAppButton({
+                            app: matchingApp,
+                            term: matchingApp.title,
+                            on_primary_click: () => {
+                                const clickAddress = client.address || focusedAddress;
+                                clickAddress && focus(clickAddress);
+                            },
+                            on_secondary_click: () => launchApp(matchingApp),
+                        });
+                    }
+        
                     return null;
-                }
-            }
-
-            const matchingApp = applications?.list.find(app => (
-                app.match(client.title) || app.match(client.class) || app.match(client.initialClass)
-            ));
-
-            if (matchingApp) {
-                addedApps.add(client.title);
-                return createAppButton({
-                    app: matchingApp,
-                    term: matchingApp.title,
-                    on_primary_click: () => {
-                        const clickAddress = client.address || focusedAddress;
-                        clickAddress && focus(clickAddress);
-                    },
-                    on_secondary_click: () => launchApp(matchingApp),
                 });
-            }
-
-            return null;
-        });
-
-        return taskbarContent;
     };
 
     return Widget.Box({
@@ -126,7 +122,7 @@ const PinnedApps = (): Gtk.Box & BoxProps => {
                     ));
 
                     if (matchingClients.length > 0) {
-                        const address = matchingClients[0].address;
+                        const {address} = matchingClients[0];
                         address && focus(address);
                     } else {
                         launchApp(app);

@@ -20,8 +20,9 @@ const DummyItem = (address: string) => Widget.Box({
 
 const AppItem = (address: string) => {
     const client = hyprland.getClient(address)
-    if (!client || client.class === "")
-        return DummyItem(address)
+    if (!client || client.class === "") {
+      return DummyItem(address)
+    }
 
     const app = apps.list.find(app => app.match(client.class))
 
@@ -79,15 +80,18 @@ export default () => Widget.Box({
     children: sortItems(hyprland.clients.map(c => AppItem(c.address))),
     setup: w => w
         .hook(hyprland, (w, address?: string) => {
-            if (typeof address === "string")
-                w.children = w.children.filter(ch => ch.attribute.address !== address)
+            if (typeof address === "string") {
+              w.children = w.children.filter(ch => ch.attribute.address !== address)
+            }
         }, "client-removed")
         .hook(hyprland, (w, address?: string) => {
-            if (typeof address === "string")
-                w.children = sortItems([...w.children, AppItem(address)])
+            if (typeof address === "string") {
+              w.children = sortItems([...w.children, AppItem(address)])
+            }
         }, "client-added")
         .hook(hyprland, (w, event?: string) => {
-            if (event === "movewindow")
-                w.children = sortItems(w.children)
+            if (event === "movewindow") {
+              w.children = sortItems(w.children)
+            }
         }, "event"),
 })

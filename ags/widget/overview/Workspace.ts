@@ -12,8 +12,9 @@ const dispatch = (args: string) => hyprland.messageAsync(`dispatch ${args}`)
 const size = (id: number) => {
     const def = { h: 1080, w: 1920 }
     const ws = hyprland.getWorkspace(id)
-    if (!ws)
-        return def
+    if (!ws) {
+      return def
+    }
 
     const mon = hyprland.getMonitor(ws.monitorID)
     return mon ? { h: mon.height, w: mon.width } : def

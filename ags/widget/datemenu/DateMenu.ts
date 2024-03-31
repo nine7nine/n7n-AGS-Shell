@@ -14,7 +14,7 @@ const Settings = () => Widget.Box({
     vexpand: false,
     children: [
         NotificationColumn(),
-        Widget.Separator({ orientation: 1 }),
+        //Widget.Separator({ orientation: 1 }),
         DateColumn(),
     ],
 })

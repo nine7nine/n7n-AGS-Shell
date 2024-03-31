@@ -24,8 +24,9 @@ export default ({ address, size: [w, h], class: c, title }: Client) => Widget.Bu
         size: `${h * scale * 0.4}`,
         icon: monochrome.bind().as(m => {
             const app = apps.list.find(app => app.match(c))
-            if (!app)
-                return icons.fallback.executable
+            if (!app) {
+              return icons.fallback.executable
+            }
 
             return icon(
                 app.icon_name + (m ? "" : ""),
