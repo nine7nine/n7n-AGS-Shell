@@ -9,7 +9,6 @@ export const substitutes = {
     "audio-card-analog-pci": "audio-card",
     "preferences-system": "emblem-system",
     "com.github.Aylur.ags": "controls",
-    "com.github.Aylur.ags": "controls",
 }
 
 export default {
@@ -21,7 +20,7 @@ export default {
         audio: "audio-x-generic",
     },
     ui: {
-        appkill: "mate-panel-force-quit",
+        appkill: "go-down-symbolic",
         arch: "archlinux-logo",
         close: "window-close",
         colorpicker: "color-select",
@@ -29,6 +28,7 @@ export default {
         link: "external-link",
         lock: "system-lock-screen",
         menu: "open-menu",
+        overview: "view-coverflow-symbolic",
         refresh: "view-refresh",
         search: "system-search",
         settings: "emblem-system",

@@ -67,8 +67,9 @@ const options = mkOptions(OPTIONS, {
         layout: {
             start: opt<BarWidget[]>([
                 "launcher",
-                "workspaces",
                 "appkill",
+                "overview",
+                "workspaces",
                 "taskbar",
                 "expander",
                 "messages",
@@ -113,6 +114,13 @@ const options = mkOptions(OPTIONS, {
             blocks: opt(7),
             width: opt(50),
             low: opt(30),
+        },
+        overview: {
+            icon: {
+                colored: opt(true),
+                icon: opt(icon(icons.ui.overview)),
+            },
+            action: opt(() => App.toggleWindow("overview")),
         },
         workspaces: {
             workspaces: opt(0),

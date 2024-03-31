@@ -32,37 +32,18 @@ $button-radius: $radius;
         @include panel-button;
 
         &:not(.flat) {
-
             @include accs-button($flat: false);
         }
     }
 
-    .appkill {
-
-        image {
-            font-weight: bold;
-            font-size: 24px;
-        }
-    }
-
-    .launcher {
+    .appkill,
+    .launcher,
+    .overview {
+        padding: 0px;
 
         image {
             font-weight: bold;
             font-size: 28px;
-        }
-
-        .colored {
-            color: transparentize($primary-bg, 0.2);
-        }
-
-        &:hover .colored {
-            color: $primary-bg;
-        }
-
-        &:active .colored,
-        &.active .colored {
-            color: $primary-fg;
         }
     }
 
@@ -90,7 +71,6 @@ $button-radius: $radius;
             }
         }
 
-        &.active,
         &:active {
             button {
                 background-color: transparentize($primary-fg, .3);
