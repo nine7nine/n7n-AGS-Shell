@@ -20,14 +20,13 @@ own needs, thus I decided to hack away and come up with something more generaliz
 - AppKill Button: Like forcekill on x11 (uses hyprctl kill).
 - Taskbar: Stylized indicators. Allow soft-kill with secondary/right mouse or stylus click.
 - QuickSettings: Refactored and Stylized.
+- QS/Netowrk Widget: Use iwgtk for settings. Fix layout bugs/issues.
 - DateMenu: Simplified widget.
 
 That aside, there are a lot of small tweaks and removal of things I don't need or want. Some redundant elements in
 widgets, or other functionality that I found inconsistent or buggy that I've killed off.
 
 ### Dependencies:
-
-install these dependencies:
 
 ***NOTE: I don't support or use Nix/NixOS***
 
@@ -40,7 +39,7 @@ install these dependencies:
 - swww
 - matugen
 
-optionally these too
+Optionally:
 
 - hyprpicker
 - slurp
@@ -48,6 +47,16 @@ optionally these too
 - wl-clipboard
 - wayshot
 - swappy
+- iwgtk
+
+Themes: (Gtk/Qt/Etc)
+
+- Nordic
+- Gradience App (possibly needed to tune gtk3/gtk4 stuff)
+
+Icons:
+
+- Papyrus (dark)
 
 ### Installation
 ```
