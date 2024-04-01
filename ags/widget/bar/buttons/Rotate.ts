@@ -2,12 +2,15 @@ import PanelButton from "../PanelButton";
 import options from "options";
 import { sh } from "lib/utils";
 
-const { icon, label } = options.bar.rotate;
+const { icon, label, monitor } = options.bar.rotate;
 let isLandscape = true;
 
 const toggleRotate = () => {
     isLandscape = !isLandscape;
-    sh(`hyprrotate ${isLandscape ? '1' : '0'}`);
+    const transformVal = isLandscape ? '1' : '0';
+    const monitorStr = `${monitor},transform,${transformVal}`;
+    const monitorCmd = `hyprctl keyword monitor ${monitorStr}`;
+    sh(monitorCmd);
 };
 
 export default () => PanelButton({

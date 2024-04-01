@@ -159,6 +159,7 @@ const options = mkOptions(OPTIONS, {
             },
         },
         rotate: {
+            monitor: opt("eDP-1,2736x1824,0x0,0,transform"),
             icon: {
                 colored: opt(true),
                 icon: opt(icon(icons.ui.rotate)),
