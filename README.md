@@ -1,17 +1,21 @@
 # n7n-AGS-Shell / Hyprland
 
 My own AGS Shell, based on Aylur's dotfiles. Aylur's AGS desktop is great, but some of it is very specific to their
-own needs, thus I decided to hack away and come up with something more generalized and suitable for my own needs.
+own needs, thus I decided to hack away to make something suitable for my own needs. I am running this Shell on a
+Microsoft Surface 7, which is a 2-in-1 laptop/tablet; multi-touch & Stylus, so my requirements are vastly
+different than what other people may need on a typical laptop.
 
 ### Screenshots 
 
-![My Image](/images/n7n-AGS-Shell_1.png)
-
 ![My Image](/images/n7n-AGS-Shell_2.png)
+
+![My Image](/images/n7n-AGS-Shell_1.png)
 
 ![My Image](/images/n7n-AGS-Shell_3.png)
 
-### Features/Improvments:
+![My Image](/images/n7n-AGS-Shell_4.png)
+
+### Features:
 
 - AppLauncher: Refactored into an AppMenu. Sorts apps. Searchable/launch.
 - Dock: Auto-hide. left-side position. Supports Chrome Apps. Note: WIP still needs indicators.
@@ -21,14 +25,14 @@ own needs, thus I decided to hack away and come up with something more generaliz
 - Taskbar: Stylized indicators. Allow soft-kill with secondary/right mouse or stylus click.
 - QuickSettings: Refactored and Stylized.
 - QS/Netowrk Widget: Use iwgtk for settings. Fix layout bugs/issues.
-- DateMenu: Simplified widget.
-
-That aside, there are a lot of small tweaks and removal of things I don't need or want. Some redundant elements in
-widgets, or other functionality that I found inconsistent or buggy that I've killed off.
+- DateMenu: Simplified Notificatios/DateMenu widget.
+- Rotation Toggle: Switch between Landscape and Portrait views
+- WvKBD OSK Toggle: My WvCtl Utility is used to send signals to WvKBD.
+- Streamlined/simpified widgets, removing redundancy where appropriate.
 
 ### Dependencies:
 
-***NOTE: I don't support or use Nix/NixOS***
+***NOTE: I don't support or use Nix/NixOS. I also tend to use -git packages on ArchLinux***
 
 - Hyprland and Co.
 - aylurs-gtk-shell, and its optional dependencies
@@ -48,6 +52,7 @@ Optionally:
 - wayshot
 - swappy
 - iwgtk
+- WvKBD (and wvctl utlity found in ~/sources directory)
 
 Themes: (Gtk/Qt/Etc)
 
@@ -61,7 +66,17 @@ Icons:
 ### Installation
 ```
 git clone https://github.com/nine7nine/n7n-AGS-Shell.git
-cp -r n7n-AGS-Shell/ags $HOME/.config/ags
+cp -r ~/n7n-AGS-Shell/ags $HOME/.config/ags
 ```
 
-Then run ags however you are doing that. I use GDM, not CLI.
+Restart AGS, or log into a Hyprland/AGS desktop session. 
+
+### WvCtl Compilation
+
+From within the ~/sources folder
+
+```
+gcc wvctl.c -o wvctl
+```
+
+After compilation, make it exectuable, and move it somewhere in your PATH (eg: /usr/bin)
