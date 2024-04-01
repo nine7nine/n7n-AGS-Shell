@@ -6,12 +6,14 @@ import Launcher from "./buttons/Launcher"
 import Media from "./buttons/Media"
 import Overview from "./buttons/Overview"
 import PowerMenu from "./buttons/PowerMenu"
+import Rotate from "./buttons/Rotate"
 import SysTray from "./buttons/SysTray"
 import SystemIndicators from "./buttons/SystemIndicators"
 import Taskbar from "./buttons/Taskbar"
 import Workspaces from "./buttons/Workspaces"
 import ScreenRecord from "./buttons/ScreenRecord"
 import Messages from "./buttons/Messages"
+import WvCtl from "./buttons/WvCtl"
 import options from "options"
 
 const { start, center, end } = options.bar.layout
@@ -34,6 +36,8 @@ const widget = {
     workspaces: Workspaces,
     screenrecord: ScreenRecord,
     messages: Messages,
+    wvctl: WvCtl,
+    rotate: Rotate,
     expander: () => Widget.Box({ expand: true }),
 }
 

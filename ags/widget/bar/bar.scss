@@ -38,8 +38,10 @@ $button-radius: $radius;
 
     .appkill,
     .launcher,
-    .overview {
-        padding: 0px;
+    .overview,
+    .rotate,
+    .wvctl {
+        padding: 2px;
 
         image {
             font-weight: bold;

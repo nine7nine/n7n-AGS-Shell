@@ -67,6 +67,8 @@ const options = mkOptions(OPTIONS, {
         layout: {
             start: opt<BarWidget[]>([
                 "launcher",
+                "rotate",
+                "wvctl",
                 "appkill",
                 "overview",
                 "workspaces",
@@ -149,6 +151,18 @@ const options = mkOptions(OPTIONS, {
         powermenu: {
             monochrome: opt(false),
             action: opt(() => App.toggleWindow("powermenu")),
+        },
+        wvctl: {
+            icon: {
+                colored: opt(true),
+                icon: opt(icon(icons.ui.wvctl)),
+            },
+        },
+        rotate: {
+            icon: {
+                colored: opt(true),
+                icon: opt(icon(icons.ui.rotate)),
+            },
         },
     },
 

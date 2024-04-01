@@ -30,6 +30,7 @@ export default {
         menu: "open-menu",
         overview: "view-coverflow-symbolic",
         refresh: "view-refresh",
+        rotate: "transform-rotate-symbolic",
         search: "system-search",
         settings: "emblem-system",
         themes: "preferences-desktop-theme",
@@ -37,6 +38,7 @@ export default {
         time: "hourglass",
         toolbars: "toolbars-symbolic",
         warning: "dialog-warning",
+        wvctl: "input-keyboard-symbolic",
         avatar: "avatar-default",
         arrow: {
             right: "pan-end",
