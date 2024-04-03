@@ -9,16 +9,18 @@ import { type RevealerProps } from "types/widgets/revealer";
 import { type EventBoxProps } from "types/widgets/eventbox";
 
 /** @param {number} monitor */
-const createToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
+const ToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
     const revealer: Gtk.Revealer & RevealerProps = Widget.Revealer({
         transition: 'slide_right',
+        transitionDuration: 90,
         child: ToolBox(),
     });
 
     const window = Widget.Window({
         monitor,
         halign: 'fill',
-        layer: "top",
+        layer: "overlay",
+        exclusivity: "exclusive",
         name: `toolbox${monitor}`,
         class_name: 'floating-toolbox',
         anchor: ['bottom','left'],
@@ -48,4 +50,4 @@ const createToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
     return window;
 };
 
-export default createToolBoxDock;
+export default ToolBoxDock;

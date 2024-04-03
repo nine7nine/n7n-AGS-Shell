@@ -20,7 +20,7 @@ const buttonConfigs = [
 ];
 
 const ToolBox = (): Gtk.Box & BoxProps => {
-    const createWinActionButtons = () => {
+    const ToolBoxButtons = () => {
         const buttons = buttonConfigs.map(({ iconIndex, moveDirection }) =>
             Widget.Button({
                 child: Widget.Icon({
@@ -42,7 +42,7 @@ const ToolBox = (): Gtk.Box & BoxProps => {
     return Widget.Box({
         class_name: "toolbox",
         vertical: true,
-        children: [createWinActionButtons()],
+        children: [ToolBoxButtons()],
     });
 };
 

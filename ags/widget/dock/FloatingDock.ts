@@ -9,7 +9,7 @@ import { type RevealerProps } from "types/widgets/revealer";
 import { type EventBoxProps } from "types/widgets/eventbox";
 
 /** @param {number} monitor */
-const createFloatingDock = (monitor: number): Gtk.Window & WindowProps => {
+const FloatingDock = (monitor: number): Gtk.Window & WindowProps => {
     const update = () => {
         const ws = hyprland.getWorkspace(hyprland.active.workspace.id);
         if (hyprland.getMonitor(monitor)?.name === ws?.monitor) {
@@ -19,6 +19,7 @@ const createFloatingDock = (monitor: number): Gtk.Window & WindowProps => {
 
     const revealer: Gtk.Revealer & RevealerProps = Widget.Revealer({
         transition: 'slide_right',
+        transitionDuration: 90,
         child: Dock(),
         setup: self => self
             .hook(hyprland, update, 'client-added')
@@ -29,7 +30,7 @@ const createFloatingDock = (monitor: number): Gtk.Window & WindowProps => {
     const window = Widget.Window({
         monitor,
         halign: 'fill',
-        layer: "top",
+        layer: "overlway",
         name: `dock${monitor}`,
         class_name: 'floating-dock',
         anchor: ['left'],
@@ -59,5 +60,5 @@ const createFloatingDock = (monitor: number): Gtk.Window & WindowProps => {
     return window;
 };
 
-export default createFloatingDock;
+export default FloatingDock;
 
