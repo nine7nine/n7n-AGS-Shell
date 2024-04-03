@@ -7,28 +7,28 @@ import { type BoxProps } from "types/widgets/box";
 const hyprland = await Service.import("hyprland");
 const { icons } = options.dock.toolbox;
 
-const move = (arg: string) => {
-    console.log(`Moving window: ${arg}`);
-    sh(`hyprctl dispatch movewindow ${arg}`);
+const move = (action: string, arg: string) => {
+    console.log(`Performing action: ${action} with argument: ${arg}`);
+    sh(`hyprctl dispatch ${action} ${arg}`);
 };
 
 const buttonConfigs = [
-    { iconIndex: 0, moveDirection: 'u' },
-    { iconIndex: 1, moveDirection: 'd' },
-    { iconIndex: 2, moveDirection: 'l' },
-    { iconIndex: 3, moveDirection: 'r' }
+    { iconIndex: 0, action: 'movewindow', arg: 'u' },
+    { iconIndex: 1, action: 'movewindow', arg: 'd' },
+    { iconIndex: 2, action: 'movewindow', arg: 'l' },
+    { iconIndex: 3, action: 'movewindow', arg: 'r' }
 ];
 
 const ToolBox = (): Gtk.Box & BoxProps => {
     const ToolBoxButtons = () => {
-        const buttons = buttonConfigs.map(({ iconIndex, moveDirection }) =>
+        const buttons = buttonConfigs.map(({ iconIndex, action, arg }) =>
             Widget.Button({
                 child: Widget.Icon({
                     icon: icons[iconIndex].bind(),
                 }),
                 on_clicked: () => {
-                    console.log("Clicked button with moveDirection:", moveDirection);
-                    move(moveDirection);
+                    console.log(`Clicked button with action: ${action} and argument: ${arg}`);
+                    move(action, arg);
                 },
             })
         );
