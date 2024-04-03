@@ -25,7 +25,7 @@ const AppButton = ({ icon, pinned = false, term, ...rest }: ButtonProps & { term
         class_name: '',
         child: pinned ? buttonBox : Widget.Overlay({
             child: buttonBox,
-            pass_through: true,
+            pass_through: false,
             overlays: [],
         }),
     });

@@ -10,7 +10,7 @@
     // Common styles for both PinnedApps and Taskbar buttons
     button {
         @include button($flat: true);
-        border-radius: 0;
+        border-radius: 4;
         padding: 2;
 
         .box {
@@ -24,14 +24,41 @@
         }
 
         .indicator {
-            background-color: transparentize($fg, 0.9);
+            background-color: transparentize($primary-bg, 0.3);
+            border-radius: $radius;
+            min-height: 2pt;
+            min-width: 16pt;
+            margin: 2pt;
+        }
+    }
+}
 
-            &.focused {
-                background-color: transparentize($primary-bg, 0.2);
-            }
-            &.running {
-                background-color: transparentize($fg, 0.01);
-            }
+.toolbox {
+    @include floating-widget;
+    border-radius: $radius;
+    background-color: transparentize($bg, 0.07);
+    min-width: 0;
+    padding: 6;
+
+    // Common styles for both PinnedApps and Taskbar buttons
+    button {
+        @include button($flat: true);
+        border-radius: 0;
+        padding: 0;
+
+        image {
+            margin: 0px;
+            font-size: 52px;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            // Override hover, active, and focus styles for buttons in .toolbox
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            outline: none;
         }
     }
 }

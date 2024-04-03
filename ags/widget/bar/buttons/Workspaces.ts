@@ -32,4 +32,3 @@ export default () => PanelButton({
     on_scroll_down: () => dispatch("m-1"),
     child: workspaces.bind().as(Workspaces),
 })
-

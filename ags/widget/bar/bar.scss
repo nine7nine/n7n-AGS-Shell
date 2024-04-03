@@ -42,6 +42,7 @@ $button-radius: $radius;
     .rotate,
     .wvctl {
         padding: 0px;
+        margin: 0 $padding * .6;
 
         image {
             font-weight: bold;

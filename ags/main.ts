@@ -12,6 +12,7 @@ import ScreenCorners from "widget/bar/ScreenCorners"
 import OSD from "widget/osd/OSD"
 import SettingsDialog from "widget/settings/SettingsDialog"
 import FloatingDock from "widget/dock/FloatingDock"
+import ToolBoxDock from "widget/dock/ToolBoxDock"
 import { forMonitors } from "lib/utils"
 import { setupQuickSettings } from "widget/quicksettings/QuickSettings"
 import { setupDateMenu } from "widget/datemenu/DateMenu"
@@ -34,6 +35,7 @@ App.config({
         ...forMonitors(ScreenCorners),
         ...forMonitors(OSD),
         ...forMonitors(FloatingDock),
+        ...forMonitors(ToolBoxDock),
         Applauncher(),
         Overview(),
         PowerMenu(),

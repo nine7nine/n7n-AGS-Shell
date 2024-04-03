@@ -40,6 +40,10 @@ export default {
         warning: "dialog-warning",
         wvctl: "input-keyboard-symbolic",
         avatar: "avatar-default",
+        moveup: "stock_up",
+        movedown: "stock_down",
+        moveleft: "stock_left",
+        moveright: "stock_right",
         arrow: {
             right: "pan-end",
             left: "pan-start",

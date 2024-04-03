@@ -184,7 +184,7 @@ const options = mkOptions(OPTIONS, {
     },
 
     dock: {
-        iconSize: opt(42),
+        iconSize: opt(48),
         pinnedApps: opt([
             "org.gnome.Console",
             "org.gnome.Nautilus",
@@ -203,15 +203,19 @@ const options = mkOptions(OPTIONS, {
             "Rnote",
             "gimp-2.99",
             "obs",
-            "Ardour",
-            "Element_Vst2",
-            "Live 11 lite",
             "Native Access",
             "pavucontrol",
-            "Raysession",
             "Vmware",
             "Hardinfo",
         ]),
+        toolbox: {
+            icons: [
+                opt(icon(icons.ui.moveup)),
+                opt(icon(icons.ui.movedown)),
+                opt(icon(icons.ui.moveleft)),
+                opt(icon(icons.ui.moveright)),
+            ]
+        },
     },
 
     overview: {
