@@ -13,7 +13,7 @@ const FloatingDock = (monitor: number): Gtk.Window & WindowProps => {
     const update = () => {
         const ws = hyprland.getWorkspace(hyprland.active.workspace.id);
         if (hyprland.getMonitor(monitor)?.name === ws?.monitor) {
-          revealer.reveal_child = ws?.windows === 0;
+            revealer.reveal_child = ws?.windows === 0;
         }
     };
 
@@ -30,19 +30,22 @@ const FloatingDock = (monitor: number): Gtk.Window & WindowProps => {
     const window = Widget.Window({
         monitor,
         halign: 'fill',
-        layer: "overlway",
+        layer: "top",
         name: `dock${monitor}`,
         class_name: 'floating-dock',
         anchor: ['left'],
         child: Widget.Box({
             vertical: true,
-            halign: 'center',
-            hpack: 'center',
+            halign: 'top',
+            hpack: 'fill',
             children: [
                 revealer,
                 Widget.Box({
                     class_name: 'padding',
-                    css: 'padding: 6px;',
+                    css: 'padding: 9px;',
+                    vertical: true,
+                    halign: 'top',
+                    hpack: 'fill',
                 }),
             ],
         }),

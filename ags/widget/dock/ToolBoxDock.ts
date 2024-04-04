@@ -10,8 +10,9 @@ import { type EventBoxProps } from "types/widgets/eventbox";
 
 /** @param {number} monitor */
 const ToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
+
     const revealer: Gtk.Revealer & RevealerProps = Widget.Revealer({
-        transition: 'slide_right',
+        transition: 'slide_left',
         transitionDuration: 90,
         child: ToolBox(),
     });
@@ -20,10 +21,9 @@ const ToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
         monitor,
         halign: 'fill',
         layer: "overlay",
-        exclusivity: "exclusive",
         name: `toolbox${monitor}`,
         class_name: 'floating-toolbox',
-        anchor: ['bottom','left'],
+        anchor: ['right'],
         child: Widget.Box({
             vertical: true,
             halign: 'top',
@@ -32,7 +32,10 @@ const ToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
                 revealer,
                 Widget.Box({
                     class_name: 'padding',
-                    css: 'padding: 6px;',
+                    css: 'padding: 9px;',
+                    vertical: true,
+                    halign: 'top',
+                    hpack: 'fill',
                 }),
             ],
         }),

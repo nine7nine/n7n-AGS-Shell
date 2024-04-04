@@ -67,10 +67,6 @@ const options = mkOptions(OPTIONS, {
         layout: {
             start: opt<BarWidget[]>([
                 "launcher",
-                "rotate",
-                "wvctl",
-                "appkill",
-                "overview",
                 "workspaces",
                 "taskbar",
                 "expander",
@@ -210,10 +206,17 @@ const options = mkOptions(OPTIONS, {
         ]),
         toolbox: {
             icons: [
-                opt(icon(icons.ui.moveup)),
-                opt(icon(icons.ui.movedown)),
+                opt(icon(icons.ui.close)),
+                opt(icon(icons.ui.appkill)),
+                opt(icon(icons.ui.rotate)),
+                opt(icon(icons.ui.swapnext)),
                 opt(icon(icons.ui.moveleft)),
                 opt(icon(icons.ui.moveright)),
+                opt(icon(icons.ui.moveup)),
+                opt(icon(icons.ui.movedown)),
+                opt(icon(icons.ui.float)),
+                opt(icon(icons.ui.fullscreen)),
+                opt(icon(icons.ui.wvctl)),
             ]
         },
     },
