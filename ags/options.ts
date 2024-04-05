@@ -1,4 +1,3 @@
-import { type BarWidget } from "widget/bar/Bar"
 import { opt, mkOptions } from "lib/option"
 import { distro } from "lib/variables"
 import { icon } from "lib/utils"

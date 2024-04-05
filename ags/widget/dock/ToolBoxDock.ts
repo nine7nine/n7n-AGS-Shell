@@ -13,7 +13,7 @@ const ToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
 
     const revealer: Gtk.Revealer & RevealerProps = Widget.Revealer({
         transition: 'slide_left',
-        transitionDuration: 90,
+        transitionDuration: 50,
         child: ToolBox(),
     });
 

@@ -21,7 +21,7 @@ const keyword = (action: string, arg: string) => {
 
 const buttonConfigs = [
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 0, action: 'killactive', arg: '' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 1, action: 'hyprctl', arg: 'kill' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 1, action: 'exec hyprctl', arg: 'kill' },
     { 
         actionExec: keyword,
         trigger: 'toggle-switch',
