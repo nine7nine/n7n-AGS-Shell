@@ -44,6 +44,8 @@ export default {
         movedown: "stock_down",
         moveleft: "stock_left",
         moveright: "stock_right",
+        workspacenext: "cm_viewhistorynext",
+        workspaceprev: "cm_viewhistoryprev",
         fullscreen: "box-symbolic",
         swapnext: "roll-symbolic",
         float: "choice-round-symbolic",

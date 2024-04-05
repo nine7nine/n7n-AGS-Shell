@@ -28,7 +28,7 @@ const Workspaces = (ws: number) => Widget.Box({
 export default () => PanelButton({
     window: "overview",
     class_name: "workspaces",
-    on_scroll_up: () => dispatch("m+1"),
-    on_scroll_down: () => dispatch("m-1"),
+    on_scroll_up: () => dispatch("r+1"),
+    on_scroll_down: () => dispatch("r-1"),
     child: workspaces.bind().as(Workspaces),
 })

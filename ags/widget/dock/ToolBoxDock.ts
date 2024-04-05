@@ -22,6 +22,7 @@ const ToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
         halign: 'fill',
         layer: "overlay",
         name: `toolbox${monitor}`,
+        click_through: false,
         class_name: 'floating-toolbox',
         anchor: ['right'],
         child: Widget.Box({
@@ -32,7 +33,7 @@ const ToolBoxDock = (monitor: number): Gtk.Window & WindowProps => {
                 revealer,
                 Widget.Box({
                     class_name: 'padding',
-                    css: 'padding: 9px;',
+                    css: 'padding: 14px;',
                     vertical: true,
                     halign: 'top',
                     hpack: 'fill',

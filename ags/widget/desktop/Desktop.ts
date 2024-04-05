@@ -13,7 +13,7 @@ export default (monitor: number) => Widget.Window({
     child: Widget.Box({
         expand: true,
         css: options.theme.dark.primary.bg.bind().as(c => `
-            transition: 250ms;
+            transition: 90ms;
             background-color: ${c}`),
         child: Widget.Box({
             class_name: "wallpaper",
