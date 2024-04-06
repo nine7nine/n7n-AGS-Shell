@@ -10,14 +10,24 @@ const dispatch = (arg: string | number) => {
 }
 
 const Workspaces = (ws: number) => Widget.Box({
-    children: range(ws || 20).map(i => Widget.Button({
-        attribute: i,
-        on_clicked: () => dispatch(i),
-        setup: self => self.hook(hyprland, () => {
-            self.toggleClassName("active", hyprland.active.workspace.id === i)
-            self.toggleClassName("occupied", (hyprland.getWorkspace(i)?.windows || 0) > 0)
-        }),
-    })),
+    children: range(ws || 20).map(i => {
+        const btn = Widget.Button({
+            attribute: i,
+            on_clicked: () => dispatch(i),
+            setup: self => self.hook(hyprland, () => {
+                self.toggleClassName("active", hyprland.active.workspace.id === i)
+                const workspace = hyprland.getWorkspace(i)
+                if (workspace) {
+                    self.toggleClassName("occupied", workspace.windows.length > 0)
+                }
+            }),
+        })
+        const workspace = hyprland.getWorkspace(i)
+        if (workspace && workspace.initialized) {
+            btn.setup()
+        }
+        return btn
+    }),
     setup: box => {
         box.hook(hyprland.active.workspace, () => box.children.map(btn => {
             btn.visible = hyprland.workspaces.some(ws => ws.id === btn.attribute)
@@ -32,3 +42,4 @@ export default () => PanelButton({
     on_scroll_down: () => dispatch("r-1"),
     child: workspaces.bind().as(Workspaces),
 })
+
