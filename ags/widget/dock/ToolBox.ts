@@ -34,12 +34,13 @@ const buttonConfigs = [
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 5, action: 'movewindow', arg: 'r' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 6, action: 'movewindow', arg: 'u' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 7, action: 'movewindow', arg: 'd' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 8, action: 'workspace', arg: 'r+1' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'workspace', arg: 'r-1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 8, action: 'workspace', arg: 'r-1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'workspace', arg: 'r+1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 10, action: 'pin', arg: '' },
     { 
         actionExec: dispatch,
         trigger: 'toggleOn-multi',
-        actionIndex: 10,
+        actionIndex: 11,
         actionOn: [
             { action: 'togglefloating', arg: 'active' },
             { action: 'resizeactive', arg: 'exact 90% 90%' },
@@ -47,11 +48,11 @@ const buttonConfigs = [
         ],
         actionOff: 'togglefloating', argOff: 'active'
     },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 11, action: 'fullscreen', arg: '2' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 12, action: 'fullscreen', arg: '1' },
     { 
         actionExec: dispatch,
         trigger: 'toggle-switch',
-        actionIndex: 12,
+        actionIndex: 13,
         actionOn: 'exec', arg: 'wvctl 1',
         actionOff: 'exec', argOff: 'wvctl 0'
     },

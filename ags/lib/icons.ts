@@ -49,6 +49,7 @@ export default {
         fullscreen: "box-symbolic",
         swapnext: "roll-symbolic",
         float: "choice-round-symbolic",
+        pinned: "gtk-cdrom-symbolic",
         arrow: {
             right: "pan-end",
             left: "pan-start",
