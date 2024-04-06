@@ -1,6 +1,7 @@
 import { opt, mkOptions } from "lib/option"
 import { distro } from "lib/variables"
 import { icon } from "lib/utils"
+import { icons } from "assets"
 import icons from "lib/icons"
 
 const options = mkOptions(OPTIONS, {
@@ -204,20 +205,20 @@ const options = mkOptions(OPTIONS, {
         ]),
         toolbox: {
             icons: [
-                opt(icon(icons.ui.close)),
-                opt(icon(icons.ui.appkill)),
-                opt(icon(icons.ui.rotate)),
-                opt(icon(icons.ui.swapnext)),
-                opt(icon(icons.ui.moveleft)),
-                opt(icon(icons.ui.moveright)),
-                opt(icon(icons.ui.moveup)),
-                opt(icon(icons.ui.movedown)),
-                opt(icon(icons.ui.workspaceprev)),
-                opt(icon(icons.ui.workspacenext)),
-                opt(icon(icons.ui.pinned)),
-                opt(icon(icons.ui.float)),
-                opt(icon(icons.ui.fullscreen)),
-                opt(icon(icons.ui.wvctl)),
+                opt(icon(icons.ui.tbox_close)),
+                opt(icon(icons.ui.tbox_appkill)),
+                opt(icon(icons.ui.tbox_rotate)),
+                opt(icon(icons.ui.tbox_swapnext)),
+                opt(icon(icons.ui.tbox_moveleft)),
+                opt(icon(icons.ui.tbox_moveright)),
+                opt(icon(icons.ui.tbox_moveup)),
+                opt(icon(icons.ui.tbox_movedown)),
+                opt(icon(icons.ui.tbox_workspaceprev)),
+                opt(icon(icons.ui.tbox_workspacenext)),
+                opt(icon(icons.ui.tbox_pinned)),
+                opt(icon(icons.ui.tbox_float)),
+                opt(icon(icons.ui.tbox_fullscreen)),
+                opt(icon(icons.ui.tbox_osk)),
             ]
         },
     },

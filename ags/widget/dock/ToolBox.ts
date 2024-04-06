@@ -48,7 +48,7 @@ const buttonConfigs = [
         ],
         actionOff: 'togglefloating', argOff: 'active'
     },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 12, action: 'fullscreen', arg: '1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 12, action: 'fullscreen', arg: '0' },
     { 
         actionExec: dispatch,
         trigger: 'toggle-switch',
