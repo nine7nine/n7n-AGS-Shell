@@ -30,17 +30,18 @@ const buttonConfigs = [
         actionOff: 'monitor', argOff: 'eDP-1,2736x1824,0x0,0,transform,0'
     },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 3, action: 'swapnext', arg: 'next' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 4, action: 'movewindow', arg: 'l' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 5, action: 'movewindow', arg: 'r' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 6, action: 'movewindow', arg: 'u' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 7, action: 'movewindow', arg: 'd' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 8, action: 'workspace', arg: 'r-1' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'workspace', arg: 'r+1' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 10, action: 'pin', arg: '' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 4, action: 'togglesplit', arg: '' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 5, action: 'movewindow', arg: 'l' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 6, action: 'movewindow', arg: 'r' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 7, action: 'movewindow', arg: 'u' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 8, action: 'movewindow', arg: 'd' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'workspace', arg: 'r-1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 10, action: 'workspace', arg: 'r+1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 11, action: 'pin', arg: '' },
     { 
         actionExec: dispatch,
         trigger: 'toggleOn-multi',
-        actionIndex: 11,
+        actionIndex: 12,
         actionOn: [
             { action: 'togglefloating', arg: 'active' },
             { action: 'resizeactive', arg: 'exact 90% 90%' },
@@ -48,11 +49,11 @@ const buttonConfigs = [
         ],
         actionOff: 'togglefloating', argOff: 'active'
     },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 12, action: 'fullscreen', arg: '0' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 13, action: 'fullscreen', arg: '0' },
     { 
         actionExec: dispatch,
         trigger: 'toggle-switch',
-        actionIndex: 13,
+        actionIndex: 14,
         actionOn: 'exec', arg: 'wvctl 1',
         actionOff: 'exec', argOff: 'wvctl 0'
     },

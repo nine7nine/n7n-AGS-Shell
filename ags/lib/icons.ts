@@ -51,6 +51,7 @@ export default {
         tbox_swapnext: "swapnext",
         tbox_float: "float",
         tbox_pinned: "pinned",
+        tbox_split: "togglesplit",
         arrow: {
             right: "pan-end",
             left: "pan-start",

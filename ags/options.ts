@@ -209,6 +209,7 @@ const options = mkOptions(OPTIONS, {
                 opt(icon(icons.ui.tbox_appkill)),
                 opt(icon(icons.ui.tbox_rotate)),
                 opt(icon(icons.ui.tbox_swapnext)),
+                opt(icon(icons.ui.tbox_split)),
                 opt(icon(icons.ui.tbox_moveleft)),
                 opt(icon(icons.ui.tbox_moveright)),
                 opt(icon(icons.ui.tbox_moveup)),
