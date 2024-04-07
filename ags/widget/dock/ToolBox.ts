@@ -29,14 +29,14 @@ const buttonConfigs = [
         actionOn: 'monitor', arg: 'eDP-1,2736x1824,0x0,0,transform,1',
         actionOff: 'monitor', argOff: 'eDP-1,2736x1824,0x0,0,transform,0'
     },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 3, action: 'swapnext', arg: 'next' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 4, action: 'togglesplit', arg: '' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 3, action: 'workspace', arg: 'r-1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 4, action: 'workspace', arg: 'r+1' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 5, action: 'movewindow', arg: 'l' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 6, action: 'movewindow', arg: 'r' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 7, action: 'movewindow', arg: 'u' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 8, action: 'movewindow', arg: 'd' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'workspace', arg: 'r-1' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 10, action: 'workspace', arg: 'r+1' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'swapnext', arg: 'next' },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 10, action: 'togglesplit', arg: '' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 11, action: 'pin', arg: '' },
     { 
         actionExec: dispatch,

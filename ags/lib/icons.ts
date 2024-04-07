@@ -48,6 +48,7 @@ export default {
         tbox_workspacenext: "wp-next",
         tbox_workspaceprev: "wp-prev",
         tbox_fullscreen: "fullscreen",
+        tbox_cyclenext: "cyclenext",
         tbox_swapnext: "swapnext",
         tbox_float: "float",
         tbox_pinned: "pinned",
