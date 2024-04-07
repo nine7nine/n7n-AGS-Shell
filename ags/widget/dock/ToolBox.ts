@@ -18,6 +18,38 @@ const keyword = (action: string, arg: string) => {
     sh(`hyprctl keyword ${action} ${arg}`);
 };
 
+const ToggleSwitch = (buttonIndex, actionOn, argOn, actionOff, argOff, actionExec) => {
+    buttonToggles[buttonIndex] = !buttonToggles[buttonIndex];
+    const { action, arg } = buttonToggles[buttonIndex] ? { action: actionOn, arg: argOn } : { action: actionOff, arg: argOff };
+    actionExec(action, arg);
+};
+
+const ToggleOnMulti = (buttonIndex, actionOn, argOn, actionOff, argOff, actionExec) => {
+    buttonToggles[buttonIndex] = !buttonToggles[buttonIndex];
+    if (buttonToggles[buttonIndex]) {
+        actionOn.forEach(({ action, arg }) => {
+            actionExec(action, arg);
+        });
+    } else {
+        actionExec(actionOff, argOff);
+    }
+};
+
+const execAction = (trigger, actionIndex, actionOn, argOn, actionOff, argOff, action, arg, actionExec) => {
+    switch (trigger) {
+        case 'toggleOn-multi':
+            ToggleOnMulti(actionIndex, actionOn, argOn, actionOff, argOff, actionExec);
+            break;
+        case 'toggle-switch':
+            ToggleSwitch(actionIndex, actionOn, argOn, actionOff, argOff, actionExec);
+            break;
+        case 'oneshot':
+            actionExec(action, arg);
+            break;
+        default:
+            break;
+    }
+};
 
 const buttonConfigs = [
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 0, action: 'killactive', arg: '' },
@@ -26,7 +58,7 @@ const buttonConfigs = [
         actionExec: keyword,
         trigger: 'toggle-switch',
         actionIndex: 2,
-        actionOn: 'monitor', arg: 'eDP-1,2736x1824,0x0,0,transform,1',
+        actionOn: 'monitor', argOn: 'eDP-1,2736x1824,0x0,0,transform,1',
         actionOff: 'monitor', argOff: 'eDP-1,2736x1824,0x0,0,transform,0'
     },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 3, action: 'workspace', arg: 'r-1' },
@@ -37,59 +69,38 @@ const buttonConfigs = [
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 8, action: 'movewindow', arg: 'd' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'swapnext', arg: 'next' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 10, action: 'togglesplit', arg: '' },
-    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 11, action: 'pin', arg: '' },
     { 
         actionExec: dispatch,
         trigger: 'toggleOn-multi',
-        actionIndex: 12,
+        actionIndex: 11,
         actionOn: [
-            { action: 'togglefloating', arg: 'active' },
+            { action: 'setfloating', arg: 'active' },
             { action: 'resizeactive', arg: 'exact 90% 90%' },
             { action: 'centerwindow', arg: '' },
         ],
-        actionOff: 'togglefloating', argOff: 'active'
+        actionOff: 'settiled', argOff: 'active'
     },
+    { actionExec: dispatch, trigger: 'oneshot', actionIndex: 12, action: 'pin', arg: '' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 13, action: 'fullscreen', arg: '0' },
     { 
         actionExec: dispatch,
         trigger: 'toggle-switch',
         actionIndex: 14,
-        actionOn: 'exec', arg: 'wvctl 1',
+        actionOn: 'exec', argOn: 'wvctl 1',
         actionOff: 'exec', argOff: 'wvctl 0'
     },
 ];
 
-const ToolBox = (): Gtk.Box & BoxProps => {
+const ToolBox = () => {
     const ToolBoxButtons = () => {
-        const buttons = buttonConfigs.map(({ actionIndex, actionOn, argOn, actionOff, argOff, 
-                                             actionExec, trigger, action, arg }) => {
-            const execAction = () => {
-                if (trigger === 'toggleOn-multi') {
-                    buttonToggles[actionIndex] = !buttonToggles[actionIndex];
-                    if (buttonToggles[actionIndex]) {
-                        actionOn.forEach(({ action, arg }) => {
-                            actionExec(action, arg);
-                        });
-                    } else {
-                        actionExec(actionOff, argOff);
-                    }
-                } else if (trigger === 'toggle-switch') {
-                    buttonToggles[actionIndex] = !buttonToggles[actionIndex];
-                    if (buttonToggles[actionIndex]) {
-                        actionExec(actionOn, arg);
-                    } else {
-                        actionExec(actionOff, argOff);
-                    }
-                } else if (trigger === 'oneshot') {
-                    actionExec(action, arg);
-                }
-            };
+        const buttons = buttonConfigs.map(({ actionIndex, actionOn, argOn, actionOff, argOff, actionExec, trigger, action, arg }) => {
+            const execActionWrapper = () => execAction(trigger, actionIndex, actionOn, argOn, actionOff, argOff, action, arg, actionExec);
 
             return Widget.Button({
                 child: Widget.Icon({
                     icon: icons[actionIndex].bind(),
                 }),
-                on_clicked: execAction,
+                on_clicked: execActionWrapper,
             });
         });
 

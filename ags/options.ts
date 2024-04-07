@@ -216,8 +216,8 @@ const options = mkOptions(OPTIONS, {
                 opt(icon(icons.ui.tbox_movedown)),
                 opt(icon(icons.ui.tbox_swapnext)),
                 opt(icon(icons.ui.tbox_split)),
-                opt(icon(icons.ui.tbox_pinned)),
                 opt(icon(icons.ui.tbox_float)),
+                opt(icon(icons.ui.tbox_pinned)),
                 opt(icon(icons.ui.tbox_fullscreen)),
                 opt(icon(icons.ui.tbox_osk)),
             ]
