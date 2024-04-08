@@ -58,7 +58,7 @@ const AppItem = (address: string) => {
             overlay: Widget.Box({
                 className: "indicator",
                 hpack: "center",
-                vpack: position.bind().as(p => p === "top" ? "start" : "end"),
+                vpack: "end",
                 setup: w => w.hook(hyprland, () => {
                     w.toggleClassName("active", hyprland.active.client.address === address)
                 }),

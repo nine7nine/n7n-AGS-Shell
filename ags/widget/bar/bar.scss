@@ -54,23 +54,23 @@ $button-radius: $radius;
         button {
             font-size: 0;
             min-width: 16pt;
-            min-height: 16pt;
+            min-height: 18pt;
             border-radius: $radius *.2;
             box-shadow: inset 0 0 0 $border-width $border-color;
             margin: 0 $padding * .8;
-            transition: $transition* 1.5;
+            transition: $transition* 3.5;
             background-color: transparentize($fg, .95);
 
             &.occupied {
                 background-color: transparentize($fg, .90);
                 min-width: 16pt;
-                min-height: 16pt;
+                min-height: 18pt;
             }
 
             &.active {
                 background-color: transparentize($primary-bg, .2);
                 min-width: 16pt;
-                min-height: 16pt;
+                min-height: 18pt;
             }
         }
 
@@ -93,12 +93,25 @@ $button-radius: $radius;
         margin: 0 ($spacing * .5)
     }
 
-    .taskbar .indicator.active {
+    .taskbar
+        image {
+            font-weight: bold;
+            font-size: 24px;
+            padding: $padding * 0.0 $padding * 0.5;
+            
+        }
+
+    .indicator.active {
         background-color: $primary-bg;
         border-radius: $radius;
         min-height: 1pt;
-        min-width: 16pt;
+        min-width: 20pt;
         margin: 2pt;
+        transition: $transition * 2.5;
+        image {
+            font-weight: bold;
+            font-size: 28px;
+        }
     }
 
     .powermenu.colored,
