@@ -13,11 +13,11 @@ $button-radius: $radius;
 
     label {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 12pt;
     }
     image {
         font-weight: bold;
-        font-size: 20px;
+        font-size: 16pt;
     }
 
     >* {
@@ -41,12 +41,12 @@ $button-radius: $radius;
     .overview,
     .rotate,
     .wvctl {
-        padding: 0px;
+        padding: 0pt;
         margin: 0 $padding * .6;
 
         image {
             font-weight: bold;
-            font-size: 28px;
+            font-size: 22pt;
         }
     }
 
@@ -96,7 +96,7 @@ $button-radius: $radius;
     .taskbar
         image {
             font-weight: bold;
-            font-size: 24px;
+            font-size: 24pt;
             padding: $padding * 0.0 $padding * 0.5;
             
         }
@@ -110,7 +110,7 @@ $button-radius: $radius;
         transition: $transition * 2.5;
         image {
             font-weight: bold;
-            font-size: 28px;
+            font-size: 22pt;
         }
     }
 
@@ -133,7 +133,7 @@ $button-radius: $radius;
         @include spacing($spacing: if($bar-spacing==0, $padding / 2, $bar-spacing));
         image {
             font-weight: bold;
-            font-size: 26px;
+            font-size: 20pt;
         }
     }
 

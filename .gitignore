@@ -1,6 +1,5 @@
 ## gitignore
 
 *.patch
-*.diff
 *.orig
 *.rej

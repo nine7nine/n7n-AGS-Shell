@@ -62,16 +62,6 @@ async function setupHyprland() {
         `dwindle:no_gaps_when_only ${hyprland.gapsWhenOnly.value ? 0 : 1}`,
         `master:no_gaps_when_only ${hyprland.gapsWhenOnly.value ? 0 : 1}`,
     ])
-
-    await sendBatch(App.windows.map(({ name }) => `layerrule unset, ${name}`))
-
-    if (blur.value > 0) {
-        sendBatch(App.windows.flatMap(({ name }) => [
-            `layerrule unset, ${name}`,
-            `layerrule blur, ${name}`,
-            `layerrule ignorealpha ${/* based on shadow color */.29}, ${name}`,
-        ]))
-    }
 }
 
 export default function init() {
