@@ -37,7 +37,7 @@ export default [
         Group("Theme",
             //Row({ opt: wp, title: "Wallpaper", type: "img" }),
             Row({ opt: at, title: "Mutagen Color Scheme" }),
-            Row({ opt: blur, title: "Blur", note: "0 to disable", max: 70 }),
+            Row({ opt: blur, title: "Blurpacity", note: "0 to disable", max: 70 }),
             Row({ opt: widget.opacity, title: "Widget Opacity", max: 100 }),
             Row({ opt: border.opacity, title: "Border Opacity", max: 100 }),
             Row({ opt: border.width, title: "Border Width" }),
