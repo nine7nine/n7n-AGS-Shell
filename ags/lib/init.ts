@@ -14,7 +14,7 @@ export default function init() {
         lowBattery()
         notifications()
         hyprland()
-        swww()
+        //swww()
     } catch (error) {
         logError(error)
     }
