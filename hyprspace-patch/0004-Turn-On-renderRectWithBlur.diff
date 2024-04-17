@@ -1,0 +1,44 @@
+From 94594cae1e816b109393c44dc820093b01d48fa9 Mon Sep 17 00:00:00 2001
+From: jordan Johnston <johnstonljordan@gmail.com>
+Date: Wed, 17 Apr 2024 18:11:46 -0500
+Subject: [PATCH] Turn on renderRectWithBlur
+
+Signed-off-by: jordan Johnston <johnstonljordan@gmail.com>
+---
+ src/Render.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/Render.cpp b/src/Render.cpp
+index 84968e4..c02aaa4 100644
+--- a/src/Render.cpp
++++ b/src/Render.cpp
+@@ -217,7 +217,7 @@ void CHyprspaceWidget::draw() {
+                     if (!(wW > 0 && wH > 0)) continue;
+                     CBox curWindowBox = {wX, wY, wW, wH};
+                     g_pHyprOpenGL->m_RenderData.clipBox = curWorkspaceBox;
+-                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
++                    g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
+                     renderWindowStub(w.get(), owner, owner->activeWorkspace, curWindowBox, &time);
+                     g_pHyprOpenGL->m_RenderData.clipBox = CBox();
+                 }
+@@ -233,7 +233,7 @@ void CHyprspaceWidget::draw() {
+                     if (!(wW > 0 && wH > 0)) continue;
+                     CBox curWindowBox = {wX, wY, wW, wH};
+                     g_pHyprOpenGL->m_RenderData.clipBox = curWorkspaceBox;
+-                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
++                    g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
+                     renderWindowStub(w.get(), owner, owner->activeWorkspace, curWindowBox, &time);
+                     g_pHyprOpenGL->m_RenderData.clipBox = CBox();
+                 }
+@@ -249,7 +249,7 @@ void CHyprspaceWidget::draw() {
+                     if (!(wW > 0 && wH > 0)) continue;
+                     CBox curWindowBox = {wX, wY, wW, wH};
+                     g_pHyprOpenGL->m_RenderData.clipBox = curWorkspaceBox;
+-                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
++                    g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
+                     renderWindowStub(w, owner, owner->activeWorkspace, curWindowBox, &time);
+                     g_pHyprOpenGL->m_RenderData.clipBox = CBox();
+                 }
+-- 
+2.44.0
+
