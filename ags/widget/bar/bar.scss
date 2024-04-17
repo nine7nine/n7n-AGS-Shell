@@ -55,20 +55,22 @@ $button-radius: $radius;
             font-size: 0;
             min-width: 16pt;
             min-height: 18pt;
-            border-radius: $radius *.2;
-            box-shadow: inset 0 0 0 $border-width $border-color;
+            border-radius: $radius *.8;
+            box-shadow: inset 0 0 0 2 #9848D666;
             margin: 0 $padding * .8;
             transition: $transition* 3.5;
             background-color: transparentize($fg, .95);
 
             &.occupied {
                 background-color: transparentize($fg, .90);
+                box-shadow: inset 0 0 0 $border-width $border-color;
                 min-width: 16pt;
                 min-height: 18pt;
             }
 
             &.active {
-                background-color: transparentize($primary-bg, .2);
+                background-color: transparentize($primary-bg, .4);
+                box-shadow: inset 0 0 0 $border-width #cccccc55;
                 min-width: 16pt;
                 min-height: 18pt;
             }
