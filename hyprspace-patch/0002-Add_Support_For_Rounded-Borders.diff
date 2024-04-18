@@ -1,17 +1,21 @@
-From a7b4c2084f2640bf0599314a1a4486996b1c2f7d Mon Sep 17 00:00:00 2001
+From 0e6060f536c992cfb88a295e412f835683f00623 Mon Sep 17 00:00:00 2001
 From: jordan Johnston <johnstonljordan@gmail.com>
-Date: Wed, 17 Apr 2024 12:08:31 -0500
-Subject: [PATCH] Add Config For Rounded Borders
+Date: Thu, 18 Apr 2024 16:38:06 -0500
+Subject: [PATCH 4/6] Rounded Borders
 
 Signed-off-by: jordan Johnston <johnstonljordan@gmail.com>
 ---
- src/Globals.hpp | 3 ++-
- src/Render.cpp  | 6 +++---
- src/main.cpp    | 5 ++++-
- 3 files changed, 9 insertions(+), 5 deletions(-)
+ src/Globals.hpp     |   3 +-
+ src/Render.cpp      |   6 +-
+ src/Render.cpp.orig | 297 ++++++++++++++++++++++++++++
+ src/main.cpp        |   3 +
+ src/main.cpp.orig   | 461 ++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 766 insertions(+), 4 deletions(-)
+ create mode 100644 src/Render.cpp.orig
+ create mode 100644 src/main.cpp.orig
 
 diff --git a/src/Globals.hpp b/src/Globals.hpp
-index 8c4851e..1ab58fe 100644
+index e2ac9fc..de11655 100644
 --- a/src/Globals.hpp
 +++ b/src/Globals.hpp
 @@ -33,6 +33,7 @@ namespace Config {
@@ -19,15 +23,15 @@ index 8c4851e..1ab58fe 100644
      extern bool hideOverlayLayers;
      extern bool drawActiveWorkspace;
 +    extern int workspaceBorderRadius;
+     extern bool hideRealLayers;
+     extern bool affectStrut;
  
-     extern bool overrideGaps;
-     extern int gapsIn;
 diff --git a/src/Render.cpp b/src/Render.cpp
-index 2233850..84968e4 100644
+index 0f725b4..6eb9ee0 100644
 --- a/src/Render.cpp
 +++ b/src/Render.cpp
-@@ -169,9 +169,9 @@ void CHyprspaceWidget::draw() {
-         CBox curWorkspaceBox = {curWorkspaceRectOffsetX, curWorkspaceRectOffsetY, workspaceBoxW, workspaceBoxH};
+@@ -179,9 +179,9 @@ void CHyprspaceWidget::draw() {
+         // workspace background rect (NOT background layer) and border
          if (ws == owner->activeWorkspace) {
              if (Config::workspaceBorderSize >= 1 && Config::workspaceActiveBorder.a > 0) {
 -                g_pHyprOpenGL->renderBorder(&curWorkspaceBox, CGradientValueData(Config::workspaceActiveBorder), 0, Config::workspaceBorderSize);
@@ -38,7 +42,7 @@ index 2233850..84968e4 100644
              if (!Config::drawActiveWorkspace) {
                  curWorkspaceRectOffsetX += workspaceBoxW + (Config::workspaceMargin * owner->scale);
                  continue;
-@@ -179,7 +179,7 @@ void CHyprspaceWidget::draw() {
+@@ -189,7 +189,7 @@ void CHyprspaceWidget::draw() {
          }
          else {
              if (Config::workspaceBorderSize >= 1 && Config::workspaceInactiveBorder.a > 0) {
@@ -47,8 +51,35 @@ index 2233850..84968e4 100644
              }
              g_pHyprOpenGL->renderRectWithBlur(&curWorkspaceBox, Config::workspaceInactiveBackground);
          }
+@@ -229,7 +229,7 @@ void CHyprspaceWidget::draw() {
+                     if (!(wW > 0 && wH > 0)) continue;
+                     CBox curWindowBox = {wX, wY, wW, wH};
+                     g_pHyprOpenGL->m_RenderData.clipBox = curWorkspaceBox;
+-                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
++                    g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
+                     renderWindowStub(w.get(), owner, owner->activeWorkspace, curWindowBox, &time);
+                     g_pHyprOpenGL->m_RenderData.clipBox = CBox();
+                 }
+@@ -245,7 +245,7 @@ void CHyprspaceWidget::draw() {
+                     if (!(wW > 0 && wH > 0)) continue;
+                     CBox curWindowBox = {wX, wY, wW, wH};
+                     g_pHyprOpenGL->m_RenderData.clipBox = curWorkspaceBox;
+-                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
++                    g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
+                     renderWindowStub(w.get(), owner, owner->activeWorkspace, curWindowBox, &time);
+                     g_pHyprOpenGL->m_RenderData.clipBox = CBox();
+                 }
+@@ -261,7 +261,7 @@ void CHyprspaceWidget::draw() {
+                     if (!(wW > 0 && wH > 0)) continue;
+                     CBox curWindowBox = {wX, wY, wW, wH};
+                     g_pHyprOpenGL->m_RenderData.clipBox = curWorkspaceBox;
+-                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
++                    g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CColor(0, 0, 0, 0));
+                     renderWindowStub(w, owner, owner->activeWorkspace, curWindowBox, &time);
+                     g_pHyprOpenGL->m_RenderData.clipBox = CBox();
+                 }
 diff --git a/src/main.cpp b/src/main.cpp
-index bb0a47a..2bdf71f 100644
+index 2516c84..8a61a9b 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
 @@ -24,6 +24,7 @@ int Config::panelHeight = 250;
@@ -58,16 +89,16 @@ index bb0a47a..2bdf71f 100644
 +int Config::workspaceBorderRadius = 2;
  bool Config::adaptiveHeight = false; // TODO: implement
  bool Config::centerAligned = true;
- bool Config::onTop = true; // TODO: implement
-@@ -290,6 +291,7 @@ void reloadConfig() {
+ bool Config::onBottom = true; // TODO: implement
+@@ -318,6 +319,7 @@ void reloadConfig() {
      Config::workspaceMargin = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:workspaceMargin")->getValue());
      Config::reservedArea = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:reservedArea")->getValue());
      Config::workspaceBorderSize = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:workspaceBorderSize")->getValue());
 +    Config::workspaceBorderRadius = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:workspaceBorderRadius")->getValue());
      Config::adaptiveHeight = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:adaptiveHeight")->getValue());
      Config::centerAligned = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:centerAligned")->getValue());
-     Config::onTop = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:onTop")->getValue());
-@@ -355,6 +357,7 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE inHandle) {
+     Config::onBottom = std::any_cast<Hyprlang::INT>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:onBottom")->getValue());
+@@ -385,6 +387,7 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE inHandle) {
      HyprlandAPI::addConfigValue(pHandle, "plugin:overview:panelHeight", Hyprlang::INT{250});
      HyprlandAPI::addConfigValue(pHandle, "plugin:overview:workspaceMargin", Hyprlang::INT{12});
      HyprlandAPI::addConfigValue(pHandle, "plugin:overview:workspaceBorderSize", Hyprlang::INT{1});
