@@ -1,49 +1,50 @@
 # n7n-AGS-Shell / Hyprland
 
-My own AGS Shell based on Aylur's dotfiles. Aylur's AGS desktop is great, but some of it is very specific to their
-own needs, thus I decided to hack away to make something suitable for me. I am running this Shell on a
+My own AGS Shell based on Aylur's dotfiles. Aylur's AGS Desktop is great, but some of it is very specific to their
+own needs. Thus I decided to hack away to make something suitable for me. I am running this Shell on a
 Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit more tablet friendly. 
 
 A few random videos:
 
-### Demos / Random Videos
+### Screenshots:
 
-https://github.com/nine7nine/n7n-AGS-Shell/assets/20159346/a0c14b64-4156-4956-9b2d-8dc2e8cb3679
+![n7n-AGS-Shell_1](https://github.com/nine7nine/n7n-AGS-Shell/assets/20159346/efa71ff1-8868-47ce-958d-906cc0a62630)
+![n7n-AGS-Shell_2](https://github.com/nine7nine/n7n-AGS-Shell/assets/20159346/c222d9f1-c983-4d7e-b9d0-7e89df332797)
+![n7n-AGS-Shell_4](https://github.com/nine7nine/n7n-AGS-Shell/assets/20159346/45af3566-d4fb-489c-ade1-b10e0fc1b347)
 
-https://github.com/nine7nine/n7n-AGS-Shell/assets/20159346/a6c5759c-36df-40de-951e-59623b1c8975
-
-https://github.com/nine7nine/n7n-AGS-Shell/assets/20159346/16bb5f3f-689a-474e-9353-598088677040
 
 ### Features:
 
 - ***AppLauncher:*** Refactored into an AppMenu. Sorts apps. Searchable/launch.
 - ***AppDock:*** Auto-hide. left-side position. Supports Chrome Apps. Note: WIP still needs indicators.
+- ***DateMenu:*** Simplified Notificatios/DateMenu widget.
 - ***Hyprspace:*** A couple of additional hacks/patches (in my repo: ~/hyprspace-patch)
-- ***Workspaces:*** Dynamic. The Bar/widget allows navigation/selection (each workspace is a button).
-- ***Taskbar:*** Stylized indicators. Allow soft-kill with secondary/right mouse or stylus click.
 - ***QuickSettings:*** Refactored, Colorized and Stylized.
 - ***QS/Netowrk Widget:*** Use iwgtk for settings. Fix layout bugs/issues.
-- ***DateMenu:*** Simplified Notificatios/DateMenu widget.
-- ***WvKBD OSK Toggle:*** My WvCtl Utility is used to send signals to WvKBD.
-- ***ToolBox:*** Dock Widget Utilizing Hyprland controls (window managment, etc)
 - ***Streamlined/simpified widgets:*** removing redundancy where appropriate.
+- ***Separation of Concerns:*** More clearly defined roles between Hyprland and AGS/The Shell.
+- ***SettingsDialog:*** Remove unused settings (Rmoved Widgets && Hyprland settings, etc).
+- ***Taskbar:*** Stylized indicators. Allow soft-kill with secondary/right mouse or stylus click.
+- ***ToolBox:*** Dock Widget Utilizing Hyprland controls (window managment, etc)
+- ***Workspaces:*** Dynamic. The Bar/widget allows navigation/selection (each workspace is a button).
+- ***WvKBD OSK Toggle:*** My WvCtl Utility is used to send signals to WvKBD.
 
 ### Dependencies:
 
 ***NOTE: I don't support or use Nix/NixOS. I also tend to use -git packages on ArchLinux***
 
 - Hyprland and Co.
-- aylurs-gtk-shell, and its optional dependencies
+- aylurs-gtk-shell (and optional dependencies)
 - bun
 - dart-sass
 - fd
 - brightnessctl
-- swww
 - matugen
 
 Optionally:
 
 - hyprpicker
+- hyprpaper
 - slurp
 - wf-recorder
 - wl-clipboard
@@ -58,7 +59,6 @@ Themes: (Gtk/Qt/Etc)
 
 - Nordic
 - Nordzy Cursors
-- Gradience App (possibly needed to tune gtk3/gtk4 stuff)
 
 Icons:
 
