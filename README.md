@@ -20,7 +20,7 @@ A few random videos:
 - ***DateMenu:*** Simplified Notificatios/DateMenu widget.
 - ***Hyprspace:*** A couple of additional hacks/patches (in my repo: ~/hyprspace-patch)
 - ***QuickSettings:*** Refactored, Colorized and Stylized.
-- ***QS/Netowrk Widget:*** Use iwgtk for settings. Fix layout bugs/issues.
+- ***QS/Network Widget:*** Use iwgtk for settings. Fix layout bugs/issues.
 - ***Streamlined/simpified widgets:*** removing redundancy where appropriate.
 - ***Separation of Concerns:*** More clearly defined roles between Hyprland and AGS/The Shell.
 - ***SettingsDialog:*** Remove unused settings (Rmoved Widgets && Hyprland settings, etc).
@@ -77,7 +77,7 @@ After compilation; make it exectuable, and then move it somewhere in your PATH (
 ### Final Notes:
 
 While I have been putting this shell together for myself -- I may be willing to accept PRs, if I see
-value the changes. Just keep in mind: I like simplicity; I've removed a number of things from Aylur's
+value in the changes. Just keep in mind: I like simplicity; I've removed a number of things from Aylur's
 config (media stuff, screenrecord, redundancy from multiple widgets, etc) AND I've done away with 
 the Shell managing Hyprland settings && relying explicitly on things like swww.
 

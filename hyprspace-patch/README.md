@@ -1,7 +1,7 @@
-# Hyprland-Patch
+# Hyprspace-Patch
 
 I have 2 out-of-tree patches that I apply to Hyprspace to make it into a Static Workspace Switcher, that
-integrates into n7n-AGS-Shell. 
+integrates into n7n-AGS-Shell.
 
  - 0001-n7n-AGS-Shell-Integration_Hacks.diff
 
@@ -28,3 +28,9 @@ git am *.diff
 make all
 ```
 6. Make sure Hyprland.conf's setting for loading the plugin points to your .so plugin
+
+NOTE:
+
+If the patches don't apply, it likely means there has been a breaking change in Hyprspace. I usually
+stay in-sync && keep my patches up-to-date. So you can either wait until I fix the issue, or manually 
+fix the issue.
