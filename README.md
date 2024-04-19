@@ -35,9 +35,10 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - Dart-sass
 - Fd
 - Hyprland and Co.
-- Hyprpicker
-- Hyprpaper
 - Hyprgrass (Hyprland plugin: multi-touch support)
+- Hyprlock
+- Hyprpaper
+- Hyprpicker
 - Hyprspace (Hyprland plugin: Overview/Workspace Switcher)
 - Gnome-related Deps
 - Iwgtk
