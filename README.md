@@ -16,7 +16,8 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - ***AppDock:*** Auto-hide. left-side position. Supports Chrome Apps. Note: WIP still needs indicators.
 - ***AppLauncher:*** Refactored into an AppMenu. Sorts apps. Searchable/launch.
 - ***DateMenu:*** Simplified Notificatios/DateMenu widget.
-- ***Hyprspace:*** Inegration via AGS && hacks/patches (in my repo: ~/hyprspace-patch)
+- ***Hyprspace:*** Shell Inegration via hacks/patches (in my repo: ~/hyprspace-patch)
+- ***Hyprlock:*** Shell Integration & Stylized.
 - ***QuickSettings:*** Refactored, Colorized and Stylized.
 - ***QS/Network Widget:*** Use iwgtk for settings. Fix layout bugs/issues.
 - ***Streamlined/simpified widgets:*** removing redundancy where appropriate.
@@ -35,16 +36,19 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - Dart-sass
 - Fd
 - Hyprland and Co.
-- Hyprgrass (Hyprland plugin: multi-touch support)
+- Hyprgrass (Plugin: Multi-touch support)
 - Hyprlock
 - Hyprpaper
 - Hyprpicker
-- Hyprspace (Hyprland plugin: Overview/Workspace Switcher)
+- Hyprspace (Plugin: Workspace Switcher)
 - Gnome-related Deps
 - Iwgtk
 - Matugen
 - Pavucontrol
 - WvKBD (and wvctl utlity found in ~/sources directory)
+
+Note: I use patches on Hyprspace (in this repo) and Wvkbd (https://github.com/nine7nine/wvkbd-n7n). I try to keep
+patching to a minimal, but sometimes it needs to happen.
 
 Font:
 
