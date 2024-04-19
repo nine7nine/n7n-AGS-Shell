@@ -1,10 +1,8 @@
 # n7n-AGS-Shell / Hyprland
 
 My own AGS Shell based on Aylur's dotfiles. Aylur's AGS Desktop is great, but some of it is very specific to their
-own needs. Thus I decided to hack away to make something suitable for me. I am running this Shell on a
+own needs and style. Thus, I decided to hack away to make something suitable for me. I am running this Shell on a
 Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit more tablet friendly. 
-
-A few random videos:
 
 ### Screenshots:
 
@@ -15,37 +13,41 @@ A few random videos:
 
 ### Features:
 
-- ***AppLauncher:*** Refactored into an AppMenu. Sorts apps. Searchable/launch.
 - ***AppDock:*** Auto-hide. left-side position. Supports Chrome Apps. Note: WIP still needs indicators.
+- ***AppLauncher:*** Refactored into an AppMenu. Sorts apps. Searchable/launch.
 - ***DateMenu:*** Simplified Notificatios/DateMenu widget.
-- ***Hyprspace:*** A couple of additional hacks/patches (in my repo: ~/hyprspace-patch)
+- ***Hyprspace:*** Inegration via AGS && hacks/patches (in my repo: ~/hyprspace-patch)
 - ***QuickSettings:*** Refactored, Colorized and Stylized.
 - ***QS/Network Widget:*** Use iwgtk for settings. Fix layout bugs/issues.
 - ***Streamlined/simpified widgets:*** removing redundancy where appropriate.
-- ***Separation of Concerns:*** More clearly defined roles between Hyprland and AGS/The Shell.
-- ***SettingsDialog:*** Remove unused settings (Rmoved Widgets && Hyprland settings, etc).
+- ***Separation of Concerns:*** Clearly defined seperation of roles between Hyprland and AGS/The Shell.
+- ***SettingsDialog:*** Remove unused settings (Rmoved Widgets && Hyprland settings, etc.).
 - ***Taskbar:*** Stylized indicators. Allow soft-kill with secondary/right mouse or stylus click.
-- ***ToolBox:*** Dock Widget Utilizing Hyprland controls (window managment, etc)
+- ***ToolBox:*** Dock Widget Utilizing Hyprland controls (window managment, rotation, etc.).
 - ***Workspaces:*** Dynamic. The Bar/widget allows navigation/selection (each workspace is a button).
 - ***WvKBD OSK Toggle:*** My WvCtl Utility is used to send signals to WvKBD.
 
 ### Dependencies:
 
-***NOTE: I don't support or use Nix/NixOS. I also tend to use -git packages on ArchLinux***
-
+- Aylurs-Gtk-Shell
+- Bun
+- Brightnessctl
+- Dart-sass
+- Fd
 - Hyprland and Co.
-- aylurs-gtk-shell
-- bun
-- dart-sass
-- fd
-- brightnessctl
-- iwgtk
-- matugen
-- hyprpicker
-- hyprpaper
+- Hyprpicker
+- Hyprpaper
 - Hyprgrass (Hyprland plugin: multi-touch support)
 - Hyprspace (Hyprland plugin: Overview/Workspace Switcher)
+- Gnome-related Deps
+- Iwgtk
+- Matugen
+- Pavucontrol
 - WvKBD (and wvctl utlity found in ~/sources directory)
+
+Font:
+
+- Ubuntu Nerd Font
 
 Themes: (Gtk/Qt/Etc)
 
@@ -54,7 +56,7 @@ Themes: (Gtk/Qt/Etc)
 
 Icons:
 
-- Papyrus (dark)
+- Papirus (dark)
 
 ### Installation
 ```
@@ -81,10 +83,9 @@ value in the changes. Just keep in mind: I like simplicity; I've removed a numbe
 config (media stuff, screenrecord, redundancy from multiple widgets, etc) AND I've done away with 
 the Shell managing Hyprland settings && relying explicitly on things like swww.
 
-So if you have practical improvements, bugfixes or something interesting (functionally) -- it's
-possible that I may be interested in your contributions. While This Shell is Tablet Centric, it's 
+So if you have practical improvements, bugfixes or something interesting (functionally) -- it is
+possible that I may be interested in your contributions. While this shell is tablet-centric, it is
 also 'general purpose' and disabling tablet specific features is as simple is commenitng out a couple
 of LOC, not using Hyprgrass and removing a few settings from Hyprland.conf.
 
 Lastly, if you want any pointers - feel free to ask.
-
