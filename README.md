@@ -34,26 +34,18 @@ A few random videos:
 ***NOTE: I don't support or use Nix/NixOS. I also tend to use -git packages on ArchLinux***
 
 - Hyprland and Co.
-- aylurs-gtk-shell (and optional dependencies)
+- aylurs-gtk-shell
 - bun
 - dart-sass
 - fd
 - brightnessctl
+- iwgtk
 - matugen
-
-Optionally:
-
 - hyprpicker
 - hyprpaper
-- slurp
-- wf-recorder
-- wl-clipboard
-- wayshot
-- swappy
-- iwgtk
-- WvKBD (and wvctl utlity found in ~/sources directory)
 - Hyprgrass (Hyprland plugin: multi-touch support)
 - Hyprspace (Hyprland plugin: Overview/Workspace Switcher)
+- WvKBD (and wvctl utlity found in ~/sources directory)
 
 Themes: (Gtk/Qt/Etc)
 
@@ -81,3 +73,18 @@ gcc wvctl.c -o wvctl
 ```
 
 After compilation; make it exectuable, and then move it somewhere in your PATH (eg: /usr/bin)
+
+### Final Notes:
+
+While I have been putting this shell together for myself -- I may be willing to accept PRs, if I see
+value the changes. Just keep in mind: I like simplicity; I've removed a number of things from Aylur's
+config (media stuff, screenrecord, redundancy from multiple widgets, etc) AND I've done away with 
+the Shell managing Hyprland settings && relying explicitly on things like swww.
+
+So if you have practical improvements, bugfixes or something interesting (functionally) -- it's
+possible that I may be interested in your contributions. While This Shell is Tablet Centric, it's 
+also 'general purpose' and disabling tablet specific features is as simple is commenitng out a couple
+of LOC, not using Hyprgrass and removing a few settings from Hyprland.conf.
+
+Lastly, if you want any pointers - feel free to ask.
+
