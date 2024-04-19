@@ -17,7 +17,7 @@ index e7be125..c3e7b2c 100644
      if (!Config::affectStrut) return;
  
 -    const auto currentHeight = Config::panelHeight + Config::reservedArea;
-+    const auto currentHeight = 36;
++    const auto currentHeight = Config::reservedArea;
      const auto pMonitor = getOwner();
  
      // reset reserved areas

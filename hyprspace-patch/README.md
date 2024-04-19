@@ -9,10 +9,10 @@ The above patch handles reworking Hyprspace to be a Static Workspace Switcher.
 
  - 0002-Add_Support_For_Rounded-Borders.diff
 
-The 2nd patch add confiruable support for Rounded-Borders in the Static Workspace Switcher.
+The 2nd patch add configurable support for Rounded-Borders in the Static Workspace Switcher.
 
-NOTE: I may try to make this all confiruable and submit PRs to Hyprspace, but for now these are just 
-hcks that I use to make things work.
+NOTE: I will see if there is interest by the Hyprspace dev to have a static workspace switcher mode. If
+they are interested, then I could probably implement proper support, rather than hacking it in.
 
 ### How to use?
 
