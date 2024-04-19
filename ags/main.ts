@@ -4,7 +4,6 @@ import init from "lib/init"
 import options from "options"
 import Bar from "widget/bar/Bar"
 import Applauncher from "widget/applauncher/Applauncher"
-import Overview from "widget/overview/Overview"
 import PowerMenu from "widget/powermenu/PowerMenu"
 import Verification from "widget/powermenu/Verification"
 import NotificationPopups from "widget/notifications/NotificationPopups"
@@ -37,7 +36,6 @@ App.config({
         ...forMonitors(FloatingDock),
         ...forMonitors(ToolBoxDock),
         Applauncher(),
-        Overview(),
         PowerMenu(),
         Verification(),
         SettingsDialog(),
