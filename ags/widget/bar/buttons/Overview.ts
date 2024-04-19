@@ -1,16 +1,12 @@
 import PanelButton from "../PanelButton"
-import options from "options"
+import { sh } from "lib/utils"
 
-const { icon, label, action } = options.bar.overview
+const hyprspace = () => {
+    sh(`hyprctl dispatch overview:toggle`)
+}
 
 export default () => PanelButton({
-    class_name: "appkill",
-    on_clicked: action.bind(),
-    child: Widget.Box([
-        Widget.Icon({
-            class_name: icon.colored.bind().as(c => c ? "colored" : ""),
-            visible: icon.icon.bind().as(v => !!v),
-            icon: icon.icon.bind(),
-        }),
-    ]),
+    class_name: "overview",
+    on_clicked: () => hyprspace(),
+    child: Widget.Box({ expand: true }),
 })

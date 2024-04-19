@@ -69,14 +69,14 @@ const options = mkOptions(OPTIONS, {
                 "launcher",
                 "workspaces",
                 "taskbar",
-                "expander",
+                "overview",
                 "messages",
             ]),
             center: opt<BarWidget[]>([
                 "date",
             ]),
             end: opt<BarWidget[]>([
-                "expander",
+                "overview",
                 "systray",
                 "colorpicker",
                 "screenrecord",
@@ -112,13 +112,6 @@ const options = mkOptions(OPTIONS, {
             blocks: opt(7),
             width: opt(50),
             low: opt(30),
-        },
-        overview: {
-            icon: {
-                colored: opt(true),
-                icon: opt(icon(icons.ui.overview)),
-            },
-            action: opt(() => App.toggleWindow("overview")),
         },
         workspaces: {
             workspaces: opt(0),
