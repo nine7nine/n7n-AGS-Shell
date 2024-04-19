@@ -111,6 +111,7 @@ export default {
         screen: "display-brightness",
     },
     powermenu: {
+        lockscreen: "stock_lock",
         sleep: "weather-clear-night",
         reboot: "system-reboot",
         logout: "system-log-out",

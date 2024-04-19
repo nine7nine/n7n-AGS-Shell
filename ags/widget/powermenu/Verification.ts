@@ -30,15 +30,20 @@ export default () => PopupWindow({
                 children: [
                     Widget.Button({
                         child: Widget.Label("No"),
-                        on_clicked: () => App.toggleWindow("verification"),
+                        on_clicked: () => {
+                            App.toggleWindow("verification");
+                        }
+                    }),
+                    Widget.Button({
+                        child: Widget.Label("Yes"),
                         setup: self => self.hook(App, (_, name: string, visible: boolean) => {
                             if (name === "verification" && visible)
                                 self.grab_focus()
                         }),
-                    }),
-                    Widget.Button({
-                        child: Widget.Label("Yes"),
-                        on_clicked: () => Utils.exec(powermenu.cmd),
+                        on_clicked: () => {
+                            Utils.exec(powermenu.cmd);
+                            App.toggleWindow("verification");
+                        }
                     }),
                 ],
             }),

@@ -224,6 +224,7 @@ const options = mkOptions(OPTIONS, {
     },
 
     powermenu: {
+        lockscreen: opt("hyprlock"),
         sleep: opt("systemctl suspend"),
         reboot: opt("systemctl reboot"),
         logout: opt("pkill Hyprland"),
