@@ -53,16 +53,16 @@ Note: I maintain a fork of Hyprspace that has patchwork to integrate Hyprspace i
 should be able to use hyprpm to install/use it. Instructions of installation (via hyprpm or manual
 compilation) are listed in it's README.md.
 
-Font:
+#### Font:
 
 - Ubuntu Nerd Font
 
-Themes: (Gtk/Qt/Etc)
+#### Themes: (Gtk/Qt/Etc)
 
 - Nordic
 - Nordzy Cursors
 
-Icons:
+#### Icons:
 
 - Papirus (dark)
 
@@ -83,6 +83,35 @@ gcc wvctl.c -o wvctl
 ```
 
 After compilation; make it exectuable, and then move it somewhere in your PATH (eg: /usr/bin)
+
+### More General Tips
+
+1. You will need to audit my ~/hypr configs, as some of the paths and images are specific for my own
+machine. I also manually load hyprland plugins, due to hacking on them. Where as you may just use hyprpm
+to load them in a properly suppored way. So some modifications to configs are required.
+
+2. You don't have a touchdevice? Well, you may not want the Toolbox dock. To hide/not load Toolbox in 
+n7n-AGS-Shell, open .config/ags/main.ts (on your machine) and comment out this line:
+```
+    windows: () => [
+        ...forMonitors(Bar),
+        ...forMonitors(NotificationPopups),
+        ...forMonitors(ScreenCorners),
+        ...forMonitors(OSD),
+        ...forMonitors(FloatingDock),
+        //...forMonitors(ToolBoxDock), <-- here
+        Applauncher(),
+        PowerMenu(),
+        Verification(),
+        SettingsDialog(),
+    ],
+```
+
+Now Toolbox won't load up on start.
+
+3. Editing the Dock apps and other settings in the Shell. Most of this stuff can be found inside of
+.config/ags/options.ts - you will have to take a look yourself, but it's all pretty straight-forward
+stuff.
 
 ### Final Notes:
 
