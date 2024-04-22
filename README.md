@@ -37,19 +37,21 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - Fd
 - Hyprland and Co.
 - Hyprgrass (Plugin: Multi-touch support)
+  - https://github.com/horriblename/hyprgrass
 - Hyprlock
 - Hyprpaper
 - Hyprpicker
 - Hyprspace (Plugin: Workspace Switcher)
-  -> Use my fork: https://github.com/nine7nine/Hyprspace-n7n
+  - Use my fork: https://github.com/nine7nine/Hyprspace-n7n
 - Gnome-related Deps
 - Iwgtk
 - Matugen
 - Pavucontrol
 - WvKBD (and wvctl utlity found in ~/sources directory)
 
-Note: I use patches on Hyprspace (in this repo) and Wvkbd (https://github.com/nine7nine/wvkbd-n7n). I try to keep
-patching to a minimal, but sometimes it needs to happen.
+Note: I maintain a fork of Hyprspace that has patchwork to integrate Hyprspace into my Shell. You 
+should be able to use hyprpm to install/use it. Instructions of installation (via hyprpm or manual
+compilation) are listed in it's README.md.
 
 Font:
 
