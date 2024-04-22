@@ -1,0 +1,28 @@
+From 4f6fb086c481cade548df3b1f821b1ec679f2bc7 Mon Sep 17 00:00:00 2001
+From: jordan Johnston <johnstonljordan@gmail.com>
+Date: Sun, 21 Apr 2024 22:44:21 -0500
+Subject: [PATCH 3/3] Workspace BorderBox Pleacement Fixup!
+
+ -> borderBox: Account for reservedArea (fix border placement)
+
+Signed-off-by: jordan Johnston <johnstonljordan@gmail.com>
+---
+ src/Render.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Render.cpp b/src/Render.cpp
+index dd4cc3d..c48ba50 100644
+--- a/src/Render.cpp
++++ b/src/Render.cpp
+@@ -115,7 +115,7 @@ void CHyprspaceWidget::draw() {
+     // Panel Border
+      if (Config::panelBorderWidth > 0) {
+         // Border box
+-        CBox borderBox = {owner->vecPosition.x, owner->vecPosition.y + Config::panelHeight - curYOffset.value(), owner->vecTransformedSize.x, (Config::panelBorderWidth) * owner->scale};
++        CBox borderBox = {owner->vecPosition.x, owner->vecPosition.y + Config::panelHeight + Config::reservedArea - curYOffset.value(), owner->vecTransformedSize.x, (Config::panelBorderWidth) * owner->scale};
+         if (Config::onBottom) borderBox = {owner->vecPosition.x, owner->vecPosition.y + owner->vecTransformedSize.y - ((Config::panelHeight + Config::reservedArea) * owner->scale) + curYOffset.value(), owner->vecTransformedSize.x, (Config::panelBorderWidth) * owner->scale};
+ 
+         g_pHyprRenderer->damageBox(&borderBox);
+-- 
+2.44.0
+
