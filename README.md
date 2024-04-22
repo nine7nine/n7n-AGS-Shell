@@ -41,6 +41,7 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - Hyprpaper
 - Hyprpicker
 - Hyprspace (Plugin: Workspace Switcher)
+  -> Use my fork: https://github.com/nine7nine/Hyprspace-n7n
 - Gnome-related Deps
 - Iwgtk
 - Matugen
