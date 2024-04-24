@@ -13,7 +13,7 @@ const FloatingDock = (monitor: number): Gtk.Window & WindowProps => {
     const update = () => {
         const ws = hyprland.getWorkspace(hyprland.active.workspace.id);
         if (hyprland.getMonitor(monitor)?.name === ws?.monitor) {
-            revealer.reveal_child = ws?.windows === 0;
+            revealer.reveal_child = !ws || ws.windows === 0;
         }
     };
 
