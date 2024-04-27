@@ -2,7 +2,11 @@
 
 My own AGS Shell based on Aylur's dotfiles. Aylur's AGS Desktop is great, but some of it is very specific to their
 own needs and style. Thus, I decided to hack away to make something suitable for me. I am running this Shell on a
-Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit more tablet friendly. 
+Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit more tablet friendly...
+
+That said; I have also stripped things down, and made the shell more 'generalized'. ie: while it has some handy
+functionality for tablets, it's great wihtout one too. This desktop-shell is intended to be functional,
+distraction-free, and modern -- while also having a bit of eye-candy.
 
 ### Screenshots:
 
@@ -20,7 +24,7 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - ***Hyprlock:*** Shell Integration & Stylized.
 - ***QuickSettings:*** Refactored, Colorized and Stylized.
 - ***QS/Network Widget:*** Use iwgtk for settings. Fix layout bugs/issues.
-- ***Streamlined/simpified widgets:*** removing redundancy where appropriate.
+- ***Streamlined/simpified widgets:*** removing redundancy and complexity where appropriate.
 - ***Separation of Concerns:*** Clearly defined seperation of roles between Hyprland and AGS/The Shell.
 - ***SettingsDialog:*** Remove unused settings (Rmoved Widgets && Hyprland settings, etc.).
 - ***Taskbar:*** Stylized indicators. Allow soft-kill with secondary/right mouse or stylus click.
@@ -38,6 +42,8 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - Hyprland and Co.
 - Hyprgrass (Plugin: Multi-touch support)
   - https://github.com/horriblename/hyprgrass
+  - if it fails to build, check my branch: https://github.com/nine7nine/hyprgrass
+  - Sometimes, I may carry a patch or two to fix things (in the interrim).
 - Hyprlock
 - Hyprpaper
 - Hyprpicker
@@ -47,7 +53,7 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 - Iwgtk
 - Matugen
 - Pavucontrol
-- WvKBDhttps://github.com/nine7nine/wvkbd-n7n
+- WvKBD
   - https://github.com/jjsullivan5196/wvkbd
   - My fork/keyboard layout: https://github.com/nine7nine/wvkbd-n7n (preferred)
   - wvctl utlity found in ~/sources directory
@@ -55,6 +61,15 @@ Microsoft Surface 7; multi-touch & Stylus support, so I need something a bit mor
 Note: I maintain a fork of Hyprspace that has patchwork to integrate Hyprspace into my Shell. You 
 should be able to use hyprpm to install/use it. Instructions of installation (via hyprpm or manual
 compilation) are listed in it's README.md.
+
+Additionally, it's important to note that Hyprland sometimes introduces bugs or breaks plugins
+along the way. I try to mitigate this stuff (and submit PRs when applicable). Much of that is out 
+of my control. In the case where upstream breaks something: I simply rollback to a working commmit
+and rebuild Hyprland, then wait for the dust to settle before rebuilding again.
+
+Likewise, I do pickup changes from Aylur's dotfiles (where applicable). But I also won't pick up
+everything (feature-wise), as there is plenty of stuff I simply do not use in my Shell, including
+all of the nix stuff + a number of widgets/features.
 
 #### Font:
 
