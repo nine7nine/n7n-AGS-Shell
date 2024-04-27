@@ -32,7 +32,7 @@ App.config({
         ...forMonitors(Bar),
         ...forMonitors(NotificationPopups),
         ...forMonitors(ScreenCorners),
-        ...forMonitors(OSD),
+        //...forMonitors(OSD),
         ...forMonitors(FloatingDock),
         ...forMonitors(ToolBoxDock),
         Applauncher(),

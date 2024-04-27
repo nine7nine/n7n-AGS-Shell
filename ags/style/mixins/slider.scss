@@ -34,11 +34,13 @@
     &:hover {
         trough {
             background-color: $hover-bg;
+                transition: $transition* 3.0;
         }
 
         slider {
             @if $slider {
                 background-color: $fg;
+                transition: $transition* 3.0;
                 border-color: $border-color;
 
                 @if $shadows {
