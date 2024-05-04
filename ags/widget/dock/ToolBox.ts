@@ -70,7 +70,7 @@ const buttonConfigs = [
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 9, action: 'swapnext', arg: 'next' },
     { actionExec: dispatch, trigger: 'oneshot', actionIndex: 10, action: 'togglesplit', arg: '' },
     { 
-        actionExec: dispatch,
+        actionExec: dispatch, 
         trigger: 'toggleOn-multi',
         actionIndex: 11,
         actionOn: [

@@ -20,7 +20,7 @@ const DummyItem = (address: string) => Widget.Box({
 
 const AppItem = (address: string) => {
     const client = hyprland.getClient(address)
-    if (!client || client.class === "") {
+    if (!client || client.class === "" || client.title === "" || client.title === "menu") {
       return DummyItem(address)
     }
 

@@ -59,43 +59,43 @@ const Taskbar = (): Gtk.Box & BoxProps => {
         const focused = running.find(client => client.address === focusedAddress);
 
         return validClients.map(client => {
-                    if (![client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')) {
-                        return null;
-                    }
-        
-                    if (addedApps.has(client.title)) {
-                        return null;
-                    }
-        
-                    for (const appName of options.dock.pinnedApps.value) {
-                        if (!appName || typeof appName !== 'string') {
-                            continue;
-                        }
-        
-                        if (client.class.includes(appName) || client.title.includes(appName) || client.initialClass.includes(appName)) {
-                            return null;
-                        }
-                    }
-        
-                    const matchingApp = applications?.list.find(app => (
-                        app.match(client.title) || app.match(client.class) || app.match(client.initialClass)
-                    ));
-        
-                    if (matchingApp) {
-                        addedApps.add(client.title);
-                        return createAppButton({
-                            app: matchingApp,
-                            term: matchingApp.title,
-                            on_primary_click: () => {
-                                const clickAddress = client.address || focusedAddress;
-                                clickAddress && focus(clickAddress);
-                            },
-                            on_secondary_click: () => launchApp(matchingApp),
-                        });
-                    }
-        
+                if (![client.class, client.title, client.initialClass].every(prop => typeof prop === 'string' && prop !== '')) {
                     return null;
-                });
+                }
+
+                if (addedApps.has(client.title)) {
+                    return null;
+                }
+
+                for (const appName of options.dock.pinnedApps.value) {
+                    if (!appName || typeof appName !== 'string') {
+                        continue;
+                    }
+
+                    if (client.class.includes(appName) || client.title.includes(appName)
+                        || client.initialClass.includes(appName)) {
+                        return null;
+                    }
+                }
+
+                const matchingApp = applications?.list.find(app => (
+                    app.match(client.title) || app.match(client.class) || app.match(client.initialClass)
+                ));
+
+                if (matchingApp) {
+                    addedApps.add(client.title);
+                    return createAppButton({
+                        app: matchingApp,
+                        term: matchingApp.title,
+                        on_primary_click: () => {
+                            const clickAddress = client.address || focusedAddress;
+                            clickAddress && focus(clickAddress);
+                        },
+                        on_secondary_click: () => launchApp(matchingApp),
+                    });
+               a }
+                return null;
+            });
     };
 
     return Widget.Box({
@@ -147,4 +147,3 @@ const Dock = (): Gtk.Box & BoxProps => Widget.Box({
 });
 
 export default Dock;
-
