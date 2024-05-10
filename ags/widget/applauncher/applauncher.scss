@@ -3,7 +3,7 @@
 
 window#applauncher .applauncher {
     @include floating_widget;
-    border-radius: 8px;
+    border-radius: 8pt;
     min-height: 620pt;
 
     .quicklaunch {
@@ -13,6 +13,10 @@ window#applauncher .applauncher {
             @include button($flat: true);
             padding: $padding;
         }
+    }
+
+    scrollbar * {
+        all: unset;
     }
 
     entry {
@@ -74,7 +78,7 @@ window#applauncher .applauncher {
             }
 
             image {
-                -gtk-icon-shadow: 2px 2px $primary-bg;
+                -gtk-icon-shadow: 2pt 2pt $primary-bg;
             }
         }
 

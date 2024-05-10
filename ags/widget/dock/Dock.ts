@@ -93,7 +93,7 @@ const Taskbar = (): Gtk.Box & BoxProps => {
                         },
                         on_secondary_click: () => launchApp(matchingApp),
                     });
-               a }
+                }
                 return null;
             });
     };
