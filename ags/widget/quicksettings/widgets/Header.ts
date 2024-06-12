@@ -50,6 +50,7 @@ export const Header = () => Widget.Box(
     Widget.Box({ hexpand: true }),
     Widget.Button({
         vpack: "center",
+        hpack: "center",
         child: Widget.Icon(icons.ui.settings),
         on_clicked: () => {
             App.closeWindow("quicksettings")
@@ -59,6 +60,7 @@ export const Header = () => Widget.Box(
     }),
     SysButton("lockscreen"),
     SysButton("sleep"),
+    SysButton("hibernate"),
     SysButton("reboot"),
     SysButton("logout"),
     SysButton("shutdown"),

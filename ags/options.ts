@@ -225,7 +225,8 @@ const options = mkOptions(OPTIONS, {
 
     powermenu: {
         lockscreen: opt("hyprlock"),
-        sleep: opt("systemctl suspend"),
+        sleep: opt("systemctl sleep"),
+        hibernate: opt("systemctl hibernate"),
         reboot: opt("systemctl reboot"),
         logout: opt("pkill Hyprland"),
         shutdown: opt("shutdown now"),

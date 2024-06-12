@@ -111,6 +111,7 @@ export default {
     powermenu: {
         lockscreen: "stock_lock",
         sleep: "weather-clear-night",
+        hibernate: "system-suspend-hibernate",
         reboot: "system-reboot",
         logout: "system-log-out",
         shutdown: "system-shutdown",

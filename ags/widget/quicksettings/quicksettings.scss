@@ -15,7 +15,7 @@ window#quicksettings .quicksettings {
 
         button {
             @include button;
-            padding: $padding * 1.4;
+            padding: $padding;
 
             image {
                 font-size: 2.6em;
