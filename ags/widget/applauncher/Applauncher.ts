@@ -106,12 +106,15 @@ const Applauncher = () => {
         vpack: "start",
         setup: self => self.hook(App, (_, win, visible) => {
             if (win !== "applauncher") {
-              return
+                return
             }
 
             entry.text = ""
-            if (visible)
+            if (visible) {
                 focus()
+                // Reset scroll position to top
+                scrolledWindow.vadjustment.set_value(0)
+            }
         }),
         children: [
             entry,
