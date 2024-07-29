@@ -33,7 +33,7 @@ App.config({
         ...forMonitors(NotificationPopups),
         ...forMonitors(ScreenCorners),
         //...forMonitors(OSD),
-        ...forMonitors(FloatingDock),
+        //...forMonitors(FloatingDock),
         ...forMonitors(ToolBoxDock),
         Applauncher(),
         PowerMenu(),
