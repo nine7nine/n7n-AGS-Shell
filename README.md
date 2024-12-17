@@ -8,6 +8,8 @@ That said; I have also stripped things down, and made the shell more 'generalize
 functionality for tablets, it's great wihtout one too. This desktop-shell is intended to be functional,
 distraction-free, and modern -- while also having a bit of eye-candy.
 
+NOTE: This is based on AGS 1.x, not 2.0+.
+
 ### Screenshots:
 
 ![n7n-AGS-Shell_1](https://github.com/nine7nine/n7n-AGS-Shell/assets/20159346/efa71ff1-8868-47ce-958d-906cc0a62630)
